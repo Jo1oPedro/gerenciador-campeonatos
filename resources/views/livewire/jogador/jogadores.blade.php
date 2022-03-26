@@ -1,13 +1,23 @@
 <div>
+    @include('livewire.jogador.jogadores-create')
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">{{session('message')}}</div>
+                    @endif
                     <div class="card">
                         <div class="card-header">
-                            <h3>All Students</h3>
+                            <h3 class="card-title">
+                                Jogadores
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJogadorModal">
+                                    Adicionar novo Jogador
+                                </button>
+                            </h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="padding:0px">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>

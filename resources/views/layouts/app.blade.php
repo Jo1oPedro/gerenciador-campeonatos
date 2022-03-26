@@ -16,5 +16,10 @@
     {{ $slot }}
 
     @livewireScripts
+    <script>
+        window.addEventListener('jogadorAdded', event => {
+            $('#addJogadorModal').modal('hide');
+        }) // esconde o model após criar o jogador ou oque estiver sendo criado
+    </script>
 </body>
 </html>

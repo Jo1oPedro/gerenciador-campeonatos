@@ -17,9 +17,15 @@
 
     @livewireScripts
     <script>
-        window.addEventListener('jogadorAdded', event => {
+        window.livewire.on('jogadorAdded',()=>{
             $('#addJogadorModal').modal('hide');
-        }) // esconde o model após criar o jogador ou oque estiver sendo criado
+        })
+        /*window.addEventListener('jogadorAdded', event => {
+            $('#addJogadorModal').modal('hide');
+        })*/ // esconde o model após criar o jogador ou oque estiver sendo criado
+        window.livewire.on('jogadorUpdated',()=>{
+            $('#updateJogadorModal').modal('hide');
+        })
     </script>
 </body>
 </html>

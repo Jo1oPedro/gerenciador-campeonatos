@@ -1,5 +1,6 @@
 <div>
     @include('livewire.jogador.jogadores-create')
+    @include('livewire.jogador.jogador-update')
     <section>
         <div class="container">
             <div class="row">
@@ -25,6 +26,7 @@
                                         <th>Idade</th>
                                         <th>Nacionalidade</th>
                                         <th>Time</th>
+                                        <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,6 +36,10 @@
                                             <td>{{$jogador->idade}}</td>
                                             <td>{{$jogador->nacionalidade}}</td>
                                             <td>{{$jogador->time}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#updateJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Editar</button>
+                                                <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($jogador->name) }}?')" wire:click.prevent="delete({{ $jogador->id }})">Excluir</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

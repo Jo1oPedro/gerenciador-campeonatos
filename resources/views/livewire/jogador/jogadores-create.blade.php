@@ -12,19 +12,39 @@
         <form>
             <div class="form-group">
                 <label for="name">Nome</label>
-                <input type="text" name="name" class="form-control" wire:model="name">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" wire:model="name">
+                <div class="invalid-feedback">
+                    @error('name')
+                        {{$message}}
+                    @enderror
+                </div>
             </div>
             <div>
                 <label for="idade">Idade</label>
-                <input type="number" name="idade" class="form-control" wire:model="idade">
+                <input type="number" name="idade" class="form-control @error('idade') is-invalid @enderror" wire:model="idade">
+                <div class="invalid-feedback">
+                    @error('idade')
+                        {{$message}}
+                    @enderror
+                </div>
             </div>
             <div>
                 <label for="nacionalidade">Nacionalidade</label>
-                <input type="text" name="nacionalidade" class="form-control" wire:model="nacionalidade">
+                <input type="text" name="nacionalidade" class="form-control @error('nacionalidade') is-invalid @enderror" wire:model="nacionalidade">
+                <div class="invalid-feedback">
+                    @error('nacionalidade')
+                        {{$message}}
+                    @enderror
+                </div>
             </div>
             <div>
                 <label for="time">Time</label>
-                <input type="text" name="time" class="form-control" wire:model="time">
+                <input type="text" name="time" class="form-control @error('time') is-invalid @enderror" wire:model="time">
+                <div class="invalid-feedback">
+                    @error('time')
+                        {{$message}}
+                    @enderror
+                </div>
             </div>   
         </form>
       </div>

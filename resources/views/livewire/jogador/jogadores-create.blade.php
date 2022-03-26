@@ -11,10 +11,10 @@
       <div class="modal-body">
         <form>
             <div class="form-group">
-                <label for="name">Nome</label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" wire:model="name">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror" wire:model="nome">
                 <div class="invalid-feedback">
-                    @error('name')
+                    @error('nome')
                         {{$message}}
                     @enderror
                 </div>
@@ -37,7 +37,7 @@
                     @enderror
                 </div>
             </div>
-            <div>
+            <!--<div>
                 <label for="time">Time</label>
                 <input type="text" name="time" class="form-control @error('time') is-invalid @enderror" wire:model="time">
                 <div class="invalid-feedback">
@@ -45,7 +45,7 @@
                         {{$message}}
                     @enderror
                 </div>
-            </div>   
+            </div>-->   
         </form>
       </div>
       <div class="modal-footer">

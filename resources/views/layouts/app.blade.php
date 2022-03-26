@@ -20,12 +20,35 @@
         window.livewire.on('jogadorAdded',()=>{
             $('#addJogadorModal').modal('hide');
         })
+        
         /*window.addEventListener('jogadorAdded', event => {
             $('#addJogadorModal').modal('hide');
         })*/ // esconde o model após criar o jogador ou oque estiver sendo criado
+        
         window.livewire.on('jogadorUpdated',()=>{
             $('#updateJogadorModal').modal('hide');
         })
+        
+        /*window.livewire.on('jogadorInfo',()=>{
+            $('#infoJogadorModal').modal('hide');
+        })*/
+
+        /*window.livewire.on('jogadorInfo', event => {
+            $('#infoJogadorModal').removeData('modal');
+        })*/
+
+        /*$('#modal-item').on('hidden', function() {
+            $(this).removeData('modal');
+        });*/
+
+        /*$(function() {
+            $(".modal-link").click(function(event) {
+                event.preventDefault()
+                $('#myModal').removeData("modal")
+                $('#myModal').modal({remote: $(this).attr("href")})
+            })
+        })*/
+
     </script>
 </body>
 </html>

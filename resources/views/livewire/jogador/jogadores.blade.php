@@ -1,6 +1,7 @@
 <div>
     @include('livewire.jogador.jogadores-create')
     @include('livewire.jogador.jogador-update')
+    @include('livewire.jogador.jogador-info')
     <section>
         <div class="container">
             <div class="row">
@@ -16,6 +17,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJogadorModal">
                                     Adicionar novo Jogador
                                 </button>
+                                <input type="text" style="margin-top:10px" class="form-control" placeholder="Procurar" wire:model="searchTerm" />
                             </h3>
                         </div>
                         <div class="card-body" style="padding:0px">
@@ -25,20 +27,21 @@
                                         <th>Name</th>
                                         <th>Idade</th>
                                         <th>Nacionalidade</th>
-                                        <th>Time</th>
+                                        <!--<th>Time</th>-->
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($jogadores as $jogador)
                                         <tr>
-                                            <td>{{$jogador->name}}</td>
+                                            <td>{{$jogador->nome}}</td>
                                             <td>{{$jogador->idade}}</td>
                                             <td>{{$jogador->nacionalidade}}</td>
-                                            <td>{{$jogador->time}}</td>
+                                            <!--<td>{{$jogador->time}}</td>-->
                                             <td>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#infoJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Visualizar</button>
                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#updateJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Editar</button>
-                                                <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($jogador->name) }}?')" wire:click.prevent="delete({{ $jogador->id }})">Excluir</button>
+                                                <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($jogador->nome) }}?')" wire:click.prevent="delete({{ $jogador->id }})">Excluir</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -48,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            {{ $pagination->links() }}
+            {{ $jogadores->links() }}
         </div>
     </section>
 </div>

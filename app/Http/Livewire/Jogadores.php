@@ -12,39 +12,57 @@ class Jogadores extends Component
     use WithPagination;
 
     public $jogadorId;
-    public $name;
+    public $nome;
     public $idade;
     public $nacionalidade;
-    public $time;
+    public $vitorias;
+    public $derrotas;
+    //public $time;
 
+    public $searchTerm = '';
     protected $paginationTheme = 'bootstrap';
 
     protected $rules =  [
-        'name' => 'required|min:5|string',
-        'idade' => 'required|integer',
+        'nome' => 'required|min:5|string',
+        'idade' => 'required|integer|min:14|max:70',
         'nacionalidade' => 'required|string|min:2',
-        'time' => 'required|string|min:2',
+        //'time' => 'required|string|min:2',
     ];
+
+    public function messages()
+    {
+        return [
+            'nome.required' => 'O campo :attribute é obrigatorio',
+            'nome.min' => 'O campo :attribute precisa ter pelo menos :min caracteres',
+            'nome.string' => 'O campo :attribute precisa ser uma string',
+            'idade.required' => 'O campo :attribute é obrigatorio',
+            'idade.min' => 'O campo :attribute precisa ter pelo menos :min anos',
+            'idade.max' => 'O campo :attribute pode ter até :max anos',
+            'nacionalidade.required' => 'O campo de :attribute é obrigatorio',
+            'nacionalidade.min' => 'O campo de :attribute precisa ter pelo menos :min caracteres',
+            'nacionalidade.string' => 'O campo de :attribute precisa ser uma string',
+        ];
+    }
 
     public function updated($propertyName) {
         $this->validateOnly($propertyName);
     }
 
     public function resetInput() {
-        $this->name = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = '';
+        $this->nome = $this->idade = $this->nacionalidade = /*$this->time =*/ $this->jogadorId = '';
     }
     
     public function store() {
         $this->validate();
 
         Jogador::create([
-            'name' => $this->name,
+            'nome' => $this->nome,
             'idade' => $this->idade,
             'nacionalidade' => $this->nacionalidade,
-            'time' => $this->time,
+            //'time' => $this->time,
         ]);
 
-        session()->flash('message', "Jogador $this->name criado com sucesso");
+        session()->flash('message', "Jogador $this->nome criado com sucesso");
         $this->resetInput(); // reseta os campos
         $this->emit('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
         //$this->dispatchBrowserEvent('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
@@ -52,11 +70,14 @@ class Jogadores extends Component
 
     public function edit(Jogador $jogador)
     {
+        //$this->emit('jogadorInfo');
         $this->jogadorId = $jogador->id;
-        $this->name = $jogador->name;
+        $this->nome = $jogador->nome;
         $this->idade = $jogador->idade;
         $this->nacionalidade = $jogador->nacionalidade;
-        $this->time = $jogador->time;
+        $this->vitorias = $jogador->vitorias;
+        $this->derrotas = $jogador->derrotas;
+        //$this->time = $jogador->time;
     }
     
     public function update()
@@ -65,13 +86,15 @@ class Jogadores extends Component
         if($this->jogadorId) 
         {
             Jogador::where('id', $this->jogadorId)->update([
-                'name' => $this->name,
+                'nome' => $this->nome,
                 'idade' => $this->idade,
                 'nacionalidade' => $this->nacionalidade,
-                'time' => $this->time,
+                'vitorias' => $this->vitorias,
+                'derrotas' => $this->derrotas,
+                //'time' => $this->time,
             ]);
         }
-        session()->flash('message', "Jogador $this->name atualizado com sucesso");
+        session()->flash('message', "Jogador $this->nome atualizado com sucesso");
         $this->resetInput();
         $this->emit('jogadorUpdated');
     }
@@ -83,13 +106,15 @@ class Jogadores extends Component
 
     public function render()
     {
+        $searchTerm = '%'.$this->searchTerm.'%';
         $paginate = 15;
-        $jogadores = Jogador::orderBy('id', 'DESC')->paginate($paginate);
+        $jogadores = Jogador::where('nome', 'like', $searchTerm)->paginate($paginate);
+        //$jogadores = Jogador::orderBy('id', 'DESC')->paginate($paginate);
         //$pagination = ceil(Jogador::count()/$paginate);
 
         return view('livewire.jogador.jogadores', [
             'jogadores' => $jogadores,
-            'pagination' => Jogador::paginate($paginate),
+            //'pagination' => Jogador::paginate($paginate),
         ]);
     }
 }

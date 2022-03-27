@@ -20,12 +20,11 @@ class CreateJogadorsTable extends Migration
             $table->string('nacionalidade');
             $table->integer('vitorias')->default(0);
             $table->integer('derrotas')->default(0);
-            /*
-            $table->foreignId('time_id')
+            
+            $table->unsignedBigInteger('time_id')
                 ->references('id')
-                ->on('times')
-                ->nullable();
-            */
+                ->on('times');
+            
             $table->timestamps();
         });
     }

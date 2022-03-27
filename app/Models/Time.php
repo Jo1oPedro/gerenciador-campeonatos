@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Jogador;
 
 class Time extends Model
 {
@@ -16,4 +17,9 @@ class Time extends Model
         'vitorias',
         'derrotas',
     ];
+
+    public function Jogadores()
+    {
+        return $this->hasMany(Jogador::class);
+    }
 }

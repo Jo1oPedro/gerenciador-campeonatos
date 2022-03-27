@@ -15,6 +15,7 @@ class Jogadores extends Component
     public $nome;
     public $idade;
     public $nacionalidade;
+    public $time;
     public $vitorias;
     public $derrotas;
     //public $time;
@@ -54,7 +55,7 @@ class Jogadores extends Component
     }
 
     public function resetInput() {
-        $this->nome = $this->idade = $this->nacionalidade = $this->jogadorId = '';
+        $this->nome = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = '';
     }
     
     public function store() {

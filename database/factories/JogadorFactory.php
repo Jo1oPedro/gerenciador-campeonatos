@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Time;
 
 class JogadorFactory extends Factory
 {
@@ -18,7 +19,8 @@ class JogadorFactory extends Factory
             'idade' => $this->faker->numberBetween($min = 1,$max = 115),
             //'time' => $this->faker->firstName(),
             'nacionalidade' => $this->faker->city(),
-            //'time' => $this->faker->city(),
+            //'time_id' => Time::all()->random()->id,
+            'time_id' => rand(1,16),
         ];
     }
 }

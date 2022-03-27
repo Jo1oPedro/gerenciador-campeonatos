@@ -17,17 +17,24 @@
 
     @livewireScripts
     <script>
-        window.livewire.on('jogadorAdded',()=>{
+        /*window.livewire.on('jogadorAdded',()=>{
             $('#addJogadorModal').modal('hide');
-        })
+        })*/
+        
+        //teste
+        window.livewire.on('closeModal', function(modalName){
+            $(modalName).modal('hide');
+            //$('#addJogadorModal').modal('hide');
+        })  
         
         /*window.addEventListener('jogadorAdded', event => {
             $('#addJogadorModal').modal('hide');
         })*/ // esconde o model após criar o jogador ou oque estiver sendo criado
         //alert('ok');
-        window.livewire.on('jogadorUpdated',()=>{
+        
+        /*window.livewire.on('jogadorUpdated',()=>{
             $('#updateJogadorModal').modal('hide');
-        })
+        })*/
         
         /*window.livewire.on('jogadorInfo',()=>{
             $('#infoJogadorModal').modal('hide');

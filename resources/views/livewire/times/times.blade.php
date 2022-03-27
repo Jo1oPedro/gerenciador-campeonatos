@@ -1,5 +1,5 @@
 <div class="container" style="margin-top: 25px">
-    @include('livewire.times.times-create');
+    @include('livewire.times.times-create')
     <section>
         <div class="container">
             <div class="row">

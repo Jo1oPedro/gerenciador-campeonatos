@@ -1,5 +1,6 @@
 <div class="container" style="margin-top: 25px">
     @include('livewire.times.times-create')
+    @include('livewire.times.times-update')
     <section>
         <div class="container">
             <div class="row">
@@ -36,7 +37,7 @@
                                             <td>{{$time->pontuacao}}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#infoJogadorModal" >Visualizar</button>
-                                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#updateJogadorModal" >Editar</button>
+                                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#updateTimeModal" wire:click.prevent="edit({{ $time->id }})">Editar</button>
                                                 <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($time->nome) }}?')" >Excluir</button>
                                             </td>
                                         </tr>

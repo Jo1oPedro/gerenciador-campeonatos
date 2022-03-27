@@ -48,6 +48,11 @@ class Jogadores extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function resetErrors() 
+    {
+        $this->resetValidation();
+    }
+
     public function resetInput() {
         $this->nome = $this->idade = $this->nacionalidade = $this->jogadorId = '';
     }
@@ -64,13 +69,15 @@ class Jogadores extends Component
 
         session()->flash('message', "Jogador $this->nome criado com sucesso");
         $this->resetInput(); // reseta os campos
-        $this->emit('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
+        $this->emit('closeModal', '#addJogadorModal');
+        //$this->emit('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
         //$this->dispatchBrowserEvent('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
     }
 
     public function edit(Jogador $jogador)
     {
         //$this->emit('jogadorInfo');
+        $this->resetValidation();
         $this->jogadorId = $jogador->id;
         $this->nome = $jogador->nome;
         $this->idade = $jogador->idade;
@@ -96,7 +103,8 @@ class Jogadores extends Component
         }
         session()->flash('message', "Jogador $this->nome atualizado com sucesso");
         $this->resetInput();
-        $this->emit('jogadorUpdated');
+        $this->emit('closeModal', '#updateJogadorModal');
+        //$this->emit('jogadorUpdated');
     }
 
     public function delete(Jogador $jogador) 

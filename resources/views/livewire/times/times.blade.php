@@ -19,7 +19,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTimeModal" wire:click.prevent="resetInput()">
                                     Adicionar novo Time
                                 </button>
-                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar" wire:model="searchTerm" />
+                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar pelo nome" wire:model="searchTerm" />
                             </h3>
                         </div>
                         <div class="card-body" style="padding:25px">

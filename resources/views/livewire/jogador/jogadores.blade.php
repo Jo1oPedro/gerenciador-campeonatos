@@ -19,7 +19,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJogadorModal" wire:click.prevent="resetInput()">
                                     Adicionar novo jogador
                                 </button>
-                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar" wire:model="searchTerm" />
+                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar pelo nome" wire:model="searchTerm" />
                             </h3>
                         </div>
                         <div class="card-body" style="padding:25px">
@@ -29,15 +29,17 @@
                                         <th style="padding-left:135px;">Nome</th>
                                         <th>Idade</th>
                                         <th>Nacionalidade</th>
+                                        <th>Time</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jogadores as $jogador)
+                                    @foreach ($jogadores as $key => $jogador)
                                         <tr>
                                             <td style="padding-left:135px;">{{$jogador->nome}}</td>
                                             <td>{{$jogador->idade}}</td>
                                             <td>{{$jogador->nacionalidade}}</td>
+                                            <td>{{$times[$key]}}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#infoJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Visualizar</button>
                                                 <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#updateJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Editar</button>

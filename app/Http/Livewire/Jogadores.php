@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Jogador;
+use App\Models\Time;
 use Livewire\WithPagination;
 
 class Jogadores extends Component
@@ -18,6 +19,8 @@ class Jogadores extends Component
     public $time;
     public $vitorias;
     public $derrotas;
+    public $AllTimes;
+    public $timeSelected;
     //public $time;
 
     public $searchTerm = '';
@@ -27,6 +30,7 @@ class Jogadores extends Component
         'nome' => 'required|min:5|string',
         'idade' => 'required|integer|min:14|max:70',
         'nacionalidade' => 'required|string|min:2',
+        'timeSelected' => 'required',
         //'time' => 'required|string|min:2',
     ];
 
@@ -42,6 +46,7 @@ class Jogadores extends Component
             'nacionalidade.required' => 'O campo de :attribute é obrigatorio',
             'nacionalidade.min' => 'O campo de :attribute precisa ter pelo menos :min caracteres',
             'nacionalidade.string' => 'O campo de :attribute precisa ser uma string',
+            'timeSelected.required' => 'O campo de times é obrigatorio',
         ];
     }
 
@@ -55,7 +60,8 @@ class Jogadores extends Component
     }
 
     public function resetInput() {
-        $this->nome = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = '';
+        $this->nome = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = $this->timeSelected = '';
+        $this->resetErrors();
     }
     
     public function store() {
@@ -65,6 +71,7 @@ class Jogadores extends Component
             'nome' => $this->nome,
             'idade' => $this->idade,
             'nacionalidade' => $this->nacionalidade,
+            'time_id' => $this->timeSelected,
             //'time' => $this->time,
         ]);
 
@@ -79,11 +86,13 @@ class Jogadores extends Component
     {
         //$this->emit('jogadorInfo');
         //dd('morreu');
+
         $this->resetValidation();
         $this->jogadorId = $jogador->id;
         $this->nome = $jogador->nome;
         $this->idade = $jogador->idade;
         $this->nacionalidade = $jogador->nacionalidade;
+        $this->time = Time::where('id', $jogador->time_id)->first()->nome;
         $this->vitorias = $jogador->vitorias;
         $this->derrotas = $jogador->derrotas;
         //$this->time = $jogador->time;
@@ -120,16 +129,27 @@ class Jogadores extends Component
         session()->flash('error', "Ocorreu um erro ao excluir o jogador");
     }
 
+    public function mount() 
+    {
+        $this->AllTimes = Time::all();
+    }
+
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
         $paginate = 15;
         $jogadores = Jogador::where('nome', 'like', $searchTerm)->paginate($paginate);
+        foreach($jogadores as $key => $jogador) {
+            //$times[] = Time::where('id', $jogador->id)->first()->nome;
+            $times[] = $jogador->Time()->get();
+            $timeName[$key] = $times[$key][0]->nome;
+        }
         //$jogadores = Jogador::orderBy('id', 'DESC')->paginate($paginate);
         //$pagination = ceil(Jogador::count()/$paginate) não tava usando esse;
 
         return view('livewire.jogador.jogadores', [
             'jogadores' => $jogadores,
+            'times' => $timeName,
             //'pagination' => Jogador::paginate($paginate),
         ]);
     }

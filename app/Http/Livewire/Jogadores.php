@@ -77,6 +77,7 @@ class Jogadores extends Component
     public function edit(Jogador $jogador)
     {
         //$this->emit('jogadorInfo');
+        //dd('morreu');
         $this->resetValidation();
         $this->jogadorId = $jogador->id;
         $this->nome = $jogador->nome;
@@ -107,9 +108,15 @@ class Jogadores extends Component
         //$this->emit('jogadorUpdated');
     }
 
-    public function delete(Jogador $jogador) 
+    public function delete($jogador) 
     {
-        $jogador->delete();
+        $jogador = Jogador::where('id', $jogador)->first();
+        if($jogador) {
+            $name = $jogador->nome;
+            $jogador->delete();
+            session()->flash('message', "Jogador $name deletado com sucesso");
+        }
+        session()->flash('error', "Ocorreu um erro ao excluir o jogador");
     }
 
     public function render()

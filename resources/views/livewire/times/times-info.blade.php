@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div wire:ignore.self class="modal fade" id="infoJogadorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade" id="infoTimeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Jogador</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Time</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -18,16 +18,16 @@
                 @enderror
             </div>
             <div>
-                <label for="idade">Idade</label>
-                <input type="number" name="idade" wire:model="idade" class="form-control @error('idade') is-invalid @enderror" readonly>
-                @error('idade')
+                <label for="pais_origem">Pais de origem</label>
+                <input type="text" name="pais_origem" wire:model="pais_origem" class="form-control @error('pais_origem') is-invalid @enderror" readonly>
+                @error('pais_origem')
                     {{$message}}
                 @enderror
             </div>
             <div>
-                <label for="nacionalidade">Nacionalidade</label>
-                <input type="text" name="nacionalidade" wire:model="nacionalidade" class="form-control @error('nacionalidade') is-invalid @enderror" readonly>
-                @error('nacionalidade')
+                <label for="pontuacao">Pontuação</label>
+                <input type="number" name="pontuacao" wire:model="pontuacao" class="form-control @error('pontuacao') is-invalid @enderror" readonly>
+                @error('pontuacao')
                     {{$message}}
                 @enderror
             </div>

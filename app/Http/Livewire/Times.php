@@ -67,9 +67,10 @@ class Times extends Component
     {
         $this->validate();
         if(!$this->time_id) {
-            session()->flash('message', "Ocorreu um problema ao atualizar o time $this->nome");
+            session()->flash('error', "Ocorreu um problema ao atualizar o time $this->nome");
             $this->resetInput();
             $this->emit('closeModal', '#updateTimeModal');
+            $this->render();
         }
         Time::where('id', $this->time_id)->update([
             'nome' => $this->nome,
@@ -95,6 +96,13 @@ class Times extends Component
         session()->flash('message', "Time $this->nome criado com sucesso");
         $this->resetInput();
         $this->emit('closeModal', '#addTimeModal');
+    }
+
+    public function delete(Time $time) 
+    {
+        $nome = $time->nome;
+        $time->delete();
+        session()->flash('message', "Time $time->nome deletado com sucesso");
     }
 
     public function resetErrors() 

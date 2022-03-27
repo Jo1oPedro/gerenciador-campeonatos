@@ -56,7 +56,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click.prevent="resetInput()">Fechar</button>
         <button type="button" class="btn btn-primary" wire:click.prevent="update()">Editar jogador</button>
       </div>
     </div>

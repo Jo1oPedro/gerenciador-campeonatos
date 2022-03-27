@@ -49,7 +49,7 @@ class Jogadores extends Component
     }
 
     public function resetInput() {
-        $this->nome = $this->idade = $this->nacionalidade = /*$this->time =*/ $this->jogadorId = '';
+        $this->nome = $this->idade = $this->nacionalidade = $this->jogadorId = '';
     }
     
     public function store() {
@@ -110,7 +110,7 @@ class Jogadores extends Component
         $paginate = 15;
         $jogadores = Jogador::where('nome', 'like', $searchTerm)->paginate($paginate);
         //$jogadores = Jogador::orderBy('id', 'DESC')->paginate($paginate);
-        //$pagination = ceil(Jogador::count()/$paginate);
+        //$pagination = ceil(Jogador::count()/$paginate) não tava usando esse;
 
         return view('livewire.jogador.jogadores', [
             'jogadores' => $jogadores,

@@ -1,7 +1,5 @@
 <div class="container" style="margin-top: 25px">
-    @include('livewire.jogador.jogadores-create')
-    @include('livewire.jogador.jogador-update')
-    @include('livewire.jogador.jogador-info')
+    @include('livewire.times.times-create');
     <section>
         <div class="container">
             <div class="row">
@@ -12,10 +10,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                Jogadores
+                                Times
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJogadorModal" wire:click.prevent="resetInput()">
-                                    Adicionar novo Jogador
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTimeModal" wire:click.prevent="resetInput()">
+                                    Adicionar novo Time
                                 </button>
                                 <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar" wire:model="searchTerm" />
                             </h3>
@@ -25,23 +23,21 @@
                                 <thead>
                                     <tr>
                                         <th style="padding-left:135px;">Nome</th>
-                                        <th>Idade</th>
-                                        <th>Nacionalidade</th>
-                                        <!--<th>Time</th>-->
+                                        <th>Pais de Origem</th>
+                                        <th>Pontuação</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jogadores as $jogador)
+                                    @foreach ($times as $time)
                                         <tr>
-                                            <td style="padding-left:135px;">{{$jogador->nome}}</td>
-                                            <td>{{$jogador->idade}}</td>
-                                            <td>{{$jogador->nacionalidade}}</td>
-                                            <!--<td>{{$jogador->time}}</td>-->
+                                            <td style="padding-left:135px;">{{$time->nome}}</td>
+                                            <td>{{$time->pais_origem}}</td>
+                                            <td>{{$time->pontuacao}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#infoJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Visualizar</button>
-                                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#updateJogadorModal" wire:click.prevent="edit({{ $jogador->id }})">Editar</button>
-                                                <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($jogador->nome) }}?')" wire:click.prevent="delete({{ $jogador->id }})">Excluir</button>
+                                                <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#infoJogadorModal" >Visualizar</button>
+                                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#updateJogadorModal" >Editar</button>
+                                                <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($time->nome) }}?')" >Excluir</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -51,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            {{ $jogadores->links() }}
+            {{ $times->links() }}
         </div>
     </section>
 </div>

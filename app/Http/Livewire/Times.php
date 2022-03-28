@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Time;
+use App\Models\Jogador;
 
 class Times extends Component
 {
@@ -19,6 +20,7 @@ class Times extends Component
     public $pontuacao;
     public $vitorias;
     public $derrotas;
+    public $allJogadores = [];
 
     public function updated($propertyName) {
         $this->validateOnly($propertyName);
@@ -61,6 +63,8 @@ class Times extends Component
         $this->pontuacao = $time->pontuacao;
         $this->vitorias = $time->vitorias;
         $this->derrotas = $time->derrotas;
+        $this->allJogadores = $time->Jogadores()->get();
+        $this->editado = true;
     }
 
     public function update()
@@ -86,6 +90,7 @@ class Times extends Component
 
     public function store() 
     {
+        $this->pontuacao = $this->vitorias = $this->derrotas = 0;
         $this->validate();
 
         Time::create([
@@ -111,7 +116,8 @@ class Times extends Component
     }
 
     public function resetInput() {
-        $this->time_id = $this->nome = $this->pais_origem = $this->pontuacao = $this->vitorias = $this->derrotas = '';
+        $this->time_id = $this->nome = $this->pais_origem = $this->pontuacao = $this->vitorias = $this->derrotas = $this->allJogadores = '';
+        $this->editado = false;
     }
     
     public function render()
@@ -119,9 +125,15 @@ class Times extends Component
         $searchTerm = '%'.$this->searchTerm.'%';
         $paginate = 15;
         $times = Time::where('nome', 'like', $searchTerm)->paginate($paginate);
-
+        //$time = Time::where('id', 1)->get();
+        //dd($time[0]->nome);
+        //$jogador = $time[0]->Jogadores()->get();
+        //dd($jogador[2]->nome);
+        //$this->allJogadores = Jogador::where('id', 3)->get();
+        //dd($this->allJogadores[0]->nome);
         return view('livewire.times.times', [ 
             'times' => $times,
+            //'allJogadores' => $this->allJogadores,
         ]);
     }
 }

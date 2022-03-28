@@ -45,6 +45,7 @@
                     {{$message}}
                 @enderror
             </div>
+            
             <!--<div>
                 <label for="time">Time</label>
                 <input type="text" name="time" wire:model="time" class="form-control @error('time') is-invalid @enderror">

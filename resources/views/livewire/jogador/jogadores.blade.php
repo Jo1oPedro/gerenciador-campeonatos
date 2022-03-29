@@ -22,8 +22,8 @@
                                 <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar pelo nome" wire:model="searchTerm" />
                             </h3>
                         </div>
-                        <div class="card-body" style="padding:25px">
-                            <table class="table table-striped">
+                        <div class="card-body table-responsive" style="padding:25px">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th style="padding-left:135px;">Nome</th>
@@ -57,3 +57,4 @@
         </div>
     </section>
 </div>
+

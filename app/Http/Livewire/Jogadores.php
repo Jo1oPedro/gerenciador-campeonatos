@@ -109,6 +109,7 @@ class Jogadores extends Component
                 'nacionalidade' => $this->nacionalidade,
                 'vitorias' => $this->vitorias,
                 'derrotas' => $this->derrotas,
+                'time_id' => $this->timeSelected,
                 //'time' => $this->time,
             ]);
         }

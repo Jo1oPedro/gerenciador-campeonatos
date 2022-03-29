@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Jogadores;
 use App\Http\Livewire\Times;
+use App\Http\Livewire\Campeonatos;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +23,5 @@ Route::get('/', function () {
 Route::get('/jogadores', Jogadores::class);
 
 Route::get('/times', Times::class);
+
+Route::get('/campeonatos', Campeonatos::class);

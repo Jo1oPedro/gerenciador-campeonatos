@@ -46,6 +46,20 @@
                     {{$message}}
                 @enderror
             </div>
+            <div class="form-group">
+              <label for="sel1">Times:</label>
+              <select class="form-control" id="sel1" name="timeSelected" class="form-control @error('timeSelected') is-invalid @enderror" wire:model="timeSelected">
+                <option>Escolha um time: </option>
+                @foreach($AllTimes as $time)
+                  <option value="{{ $time->id }}">{{ $time->nome }}</option>
+                @endforeach
+              </select>
+              <div class="invalid-feedback">
+                  @error('timeSelected')
+                      {{$message}}
+                  @enderror
+              </div>
+            </div>
             <!--<div>
                 <label for="time">Time</label>
                 <input type="text" name="time" wire:model="time" class="form-control @error('time') is-invalid @enderror">

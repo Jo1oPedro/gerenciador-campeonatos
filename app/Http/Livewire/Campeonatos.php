@@ -17,7 +17,6 @@ class Campeonatos extends Component
     public $timeSelected;
     public $times = [];
 
-
     public function teste()
     {
         dd('teste');
@@ -40,13 +39,18 @@ class Campeonatos extends Component
         ]);
     }
 
+    public function mount() 
+    {
+        $this->times = Time::all();
+        //dd($this->times);
+    }
+
     public function edit(Campeonato $campeonato) 
     {   
         $this->nome = $campeonato->nome;
         $this->jogo = $campeonato->jogo;
         $this->data_inicio = $campeonato->inicio;
         $this->data_fim = $campeonato->encerramento;
-        $this->times = Time::all();
     }
 
     public function render()

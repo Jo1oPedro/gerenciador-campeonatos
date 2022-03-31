@@ -63,12 +63,13 @@
                     </div>
                 </div>
                 <div class="inline-block relative w-full">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="data_termino">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="times">
                         Times no campeonato
                     </label>
-                    <select class="mt-4 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <select class="mt-4 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" id="times">
+                        <option value="" disabled selected>Times:</option>    
                         @foreach($times as $key => $time)
-                        <option>Time {{ $key }}: {{ $time->nome }}</option>
+                        <option>Time {{ $key+1 }}: {{ $time->nome }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -19,6 +19,11 @@
     <!--Styles--> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css"
+      rel="stylesheet"
+    />
     @livewireStyles
     <style>
         [x-cloak] { 
@@ -71,6 +76,13 @@
             })
         })*/
 
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+    <script>
+      new TomSelect('#select-role', {
+        
+      });
     </script>
 </body>
 </html>

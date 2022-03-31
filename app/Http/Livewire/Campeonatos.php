@@ -14,7 +14,7 @@ class Campeonatos extends Component
     public $jogo;
     public $data_inicio;
     public $data_fim;
-    public $timeSelected;
+    public $timesSelected = [];
     public $times = [];
 
     public function teste()
@@ -51,6 +51,11 @@ class Campeonatos extends Component
         $this->jogo = $campeonato->jogo;
         $this->data_inicio = $campeonato->inicio;
         $this->data_fim = $campeonato->encerramento;
+    }
+
+    public function create() 
+    {
+        dd($this->timesSelected);
     }
 
     public function render()

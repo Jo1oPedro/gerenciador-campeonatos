@@ -32,57 +32,22 @@
     </style>
 </head>
 <body x-cloak x-data="{openModal: false}"
- :class="openModal ? 'overflow-hidden' : 'overflow-visible'"> <!-- junto ao x-cloack evita com que os madais abram ao carregar a pagina -->
+ :class="openModal ? 'overflow-hidden' : 'overflow-visible'"> <!-- junto ao x-cloack no style evita com que os madais abram ao carregar a pagina -->
 
     {{  $slot }}
     @livewireScripts
     <script>
-        /*window.livewire.on('jogadorAdded',()=>{
-            $('#addJogadorModal').modal('hide');
-        })*/
-        
-        //teste
         window.livewire.on('closeModal', function(modalName){
             $(modalName).modal('hide');
             //$('#addJogadorModal').modal('hide');
-        })  
-        
-        /*window.addEventListener('jogadorAdded', event => {
-            $('#addJogadorModal').modal('hide');
-        })*/ // esconde o model após criar o jogador ou oque estiver sendo criado
-        //alert('ok');
-        
-        /*window.livewire.on('jogadorUpdated',()=>{
-            $('#updateJogadorModal').modal('hide');
-        })*/
-        
-        /*window.livewire.on('jogadorInfo',()=>{
-            $('#infoJogadorModal').modal('hide');
-        })*/
-
-        /*window.livewire.on('jogadorInfo', event => {
-            $('#infoJogadorModal').removeData('modal');
-        })*/
-
-        /*$('#modal-item').on('hidden', function() {
-            $(this).removeData('modal');
-        });*/
-
-        /*$(function() {
-            $(".modal-link").click(function(event) {
-                event.preventDefault()
-                $('#myModal').removeData("modal")
-                $('#myModal').modal({remote: $(this).attr("href")})
-            })
-        })*/
-
+        })  // era utilizado para fechar os modais antes da utilização do alpine js
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script>
       new TomSelect('#select-role', {
-        
+
       });
-    </script>
+    </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario  -->
 </body>
 </html>

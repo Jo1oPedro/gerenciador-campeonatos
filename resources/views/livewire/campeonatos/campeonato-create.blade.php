@@ -63,25 +63,25 @@
                     </div>
                 </div>
                 <div class="">
-                    <label class="inline-block text-sm text-gray-600" for="Multiselect"
-                        >Select multiple roles</label
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="Multiselect"
+                        >Select multiple teams</label
                     >
-                    <div class="relative flex w-full">
+                    <div class="relative flex w-full" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
                         id="select-role"
-                        name="roles[]"
                         multiple
-                        placeholder="Select roles..."
+                        placeholder="Select teams..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
-                        multiple
+                        wire:model="timesSelected"
                         >
                         @foreach ($times as $key => $time)
-                        <option wire:modal="timesSelected[]">Time{{ $key+1 }}: {{ $time->nome }}</option>
+                            <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
                         @endforeach
                         </select>
                     </div>
                 </div>
+                
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->
                     <div class="">

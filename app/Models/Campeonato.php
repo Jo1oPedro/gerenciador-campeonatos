@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Time;
 
 class Campeonato extends Model
 {
@@ -16,4 +17,9 @@ class Campeonato extends Model
         'time1',
         'time2',
     ];
+
+    /*public function times() 
+    {
+        return $this->hasMany(Times::class);
+    }*/
 }

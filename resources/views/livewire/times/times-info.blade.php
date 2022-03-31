@@ -45,7 +45,12 @@
                     {{$message}}
                 @enderror
             </div>
-            
+            <div>
+              <button class="btn btn-info mt-2 d-block" wire:click.prevent="getJogadores({{$time_id}})">Jogadores</button>
+              @foreach($allJogadores as $key => $jogador)
+                <input value="Jogador {{ $key+1 }}: {{$jogador->nome}}" class="form-control mt-2" readonly>
+              @endforeach
+            </div>
             <!--<div>
                 <label for="time">Time</label>
                 <input type="text" name="time" wire:model="time" class="form-control @error('time') is-invalid @enderror">

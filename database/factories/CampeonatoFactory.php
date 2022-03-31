@@ -19,4 +19,5 @@ class CampeonatoFactory extends Factory
             'time2' => $this->faker->city(),
         ];
     }
+
 }

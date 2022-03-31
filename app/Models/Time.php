@@ -22,4 +22,10 @@ class Time extends Model
     {
         return $this->hasMany(Jogador::class);
     }
+
+    /*public function campeonatos()
+    {
+        return $this->BelongsTo(Campeonatos::class);
+    }*/
+
 }

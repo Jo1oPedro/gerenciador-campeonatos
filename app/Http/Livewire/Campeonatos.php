@@ -14,6 +14,14 @@ class Campeonatos extends Component
     public $data_fim;
     public $time1;
     public $time2;
+    public $timeSelected;
+    public $allTimes = [];
+
+
+    public function teste()
+    {
+        dd('teste');
+    }
 
     protected $rules = [
         'nome' => 'required|string|min:3',

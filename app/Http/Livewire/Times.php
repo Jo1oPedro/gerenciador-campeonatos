@@ -22,6 +22,15 @@ class Times extends Component
     public $derrotas;
     public $allJogadores = [];
 
+    public function getJogadores(Time $time) 
+    {
+        (count($this->allJogadores) == 0) ? $this->allJogadores = $time->Jogadores()->get() : $this->allJogadores = [];
+        /*if($this->allJogadores = '') 
+        {
+            $this->allJogadores = $time->Jogadores()->get();
+        }*/
+    }
+
     public function updated($propertyName) {
         $this->validateOnly($propertyName);
     }
@@ -63,7 +72,7 @@ class Times extends Component
         $this->pontuacao = $time->pontuacao;
         $this->vitorias = $time->vitorias;
         $this->derrotas = $time->derrotas;
-        $this->allJogadores = $time->Jogadores()->get();
+        //$this->allJogadores = $time->Jogadores()->get();
         $this->editado = true;
     }
 

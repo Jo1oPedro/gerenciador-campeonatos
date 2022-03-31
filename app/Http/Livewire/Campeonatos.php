@@ -4,18 +4,18 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Campeonato;
+use App\Models\Time;
 
 class Campeonatos extends Component
 {
     //$this->reset() limpa todos os campos
     //$this->reset($nome) limpa só o campo nome
     public $nome;
+    public $jogo;
     public $data_inicio;
     public $data_fim;
-    public $time1;
-    public $time2;
     public $timeSelected;
-    public $allTimes = [];
+    public $times = [];
 
 
     public function teste()
@@ -27,8 +27,6 @@ class Campeonatos extends Component
         'nome' => 'required|string|min:3',
         'data_inicio' => 'required|date',
         'data_fim' => 'required|date',
-        'time1' => 'required|string|min:2',
-        'time2' => 'required|string|min:2',
     ];
 
     public function submit()
@@ -36,11 +34,19 @@ class Campeonatos extends Component
         $this->validate();
         Campeonato::create([
             'nome' => $this->nome,
-            'time1' => $this->time1,
-            'time2' => $this->time2,
+            'jogo' => $this->jogo,
             'inicio' => $this->data_inicio,
             'encerramento' => $this->data_fim,
         ]);
+    }
+
+    public function edit(Campeonato $campeonato) 
+    {   
+        $this->nome = $campeonato->nome;
+        $this->jogo = $campeonato->jogo;
+        $this->data_inicio = $campeonato->inicio;
+        $this->data_fim = $campeonato->encerramento;
+        $this->times = Time::all();
     }
 
     public function render()

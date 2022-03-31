@@ -28,7 +28,7 @@
                                 <tr class="bg-white border-b transition durante-300 ease-in-out hover:bg-gray-100 ">
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $key+1 }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->nome }} </td>
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->time1 }} VS {{ $campeonato->time2 }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->jogo }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->inicio }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->encerramento }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">

@@ -14,8 +14,7 @@ class Campeonato extends Model
         'nome',
         'data_inicio',
         'data_fim',
-        'time1',
-        'time2',
+        'jogo',
     ];
 
     /*public function times() 

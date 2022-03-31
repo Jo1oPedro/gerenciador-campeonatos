@@ -16,8 +16,7 @@ class CreateCampeonatosTable extends Migration
         Schema::create('campeonatos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('time1');
-            $table->string('time2');
+            $table->string('jogo');
             $table->date('inicio')
                 ->default(date('Y-m-d H:i:s'))
                 ->nullable();

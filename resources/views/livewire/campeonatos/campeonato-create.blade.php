@@ -24,46 +24,46 @@
             <form class="w-full max-w-sm">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="inline-full-name">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="name">
                         Nome
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" wire:model="nome">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="name" type="text" wire:model="nome">
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="jogo">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-jogo">
                         Jogo
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="jogo" type="text" wire:model="jogo">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-jogo" type="text" wire:model="jogo">
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="data_inicio">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-data_inicio">
                         Data de inicio
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="data_inicio" type="date" wire:model="data_inicio">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_inicio" type="date" wire:model="data_inicio">
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="data_termino">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-data_termino">
                         Data de termino
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="data_termino" type="date" wire:model="data_fim">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_termino" type="date" wire:model="data_fim">
                     </div>
                 </div>
                 <div class="">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="Multiselect"
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="select-role"
                         >Select multiple teams</label
                     >
                     <div class="relative flex w-full" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->

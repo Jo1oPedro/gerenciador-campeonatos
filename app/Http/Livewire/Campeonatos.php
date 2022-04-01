@@ -28,6 +28,12 @@ class Campeonatos extends Component
         'data_fim' => 'required|date',
     ];
 
+    public function resetInputs()
+    {
+        $this->nome = $this->jogo = $this->inicio = $this->encerramento = '';
+        $this->timesSelected = []; 
+    }
+
     public function submit()
     {
         $this->validate();
@@ -55,6 +61,7 @@ class Campeonatos extends Component
 
     public function create() 
     {
+        $this->emit('resetSelect');
         dd($this->timesSelected);
     }
 

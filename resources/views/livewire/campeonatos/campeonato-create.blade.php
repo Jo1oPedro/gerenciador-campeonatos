@@ -74,6 +74,7 @@
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
                         wire:model="timesSelected"
+                        data-default-value="{{$times[0]->id}}"
                         >
                         @foreach ($times as $key => $time)
                             <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>

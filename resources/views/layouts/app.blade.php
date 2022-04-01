@@ -46,8 +46,21 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script>
       new TomSelect('#select-role', {
-
+        plugins: {
+            'clear_button':{
+                'title':'Remover todas as opções selecionadas',
+            }
+        },
+        persist: false,
+        create: true,
       });
-    </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario  -->
+    </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario // também cria o botão de delete para remover todos os selects-->
+
+    <script>
+        window.livewire.on('resetSelect', () => {
+
+            $('#select-role').val(null).trigger('clear_button');
+        })  // era utilizado para fechar os modais antes da utilização do alpine js
+    </script>
 </body>
 </html>

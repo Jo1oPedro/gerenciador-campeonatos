@@ -21,10 +21,13 @@ class CreateJogadorsTable extends Migration
             $table->integer('vitorias')->default(0);
             $table->integer('derrotas')->default(0);
             
-            $table->unsignedBigInteger('time_id')
+            /*$table->unsignedBigInteger('time_id')
                 ->references('id')
-                ->on('times');
-            
+                ->on('times')
+                ->nullable;
+            */
+
+            $table->foreignId('time_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

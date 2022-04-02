@@ -20,8 +20,10 @@ class CreateTimesTable extends Migration
             $table->integer('pontuacao')->default(0);
             $table->integer('vitorias')->default(0);
             $table->integer('derrotas')->default(0);
-            //$table->integer('jogadores');
-            //$table->integer('campeonatos');
+
+            //$table->foreignId('campeonato_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('campeonato_id')->nullable()->constrained()->nullOnDelete();
+            
             $table->timestamps();
         });
     }

@@ -34,21 +34,9 @@ class Campeonatos extends Component
         $this->timesSelected = []; 
     }
 
-    public function submit()
-    {
-        $this->validate();
-        Campeonato::create([
-            'nome' => $this->nome,
-            'jogo' => $this->jogo,
-            'inicio' => $this->data_inicio,
-            'encerramento' => $this->data_fim,
-        ]);
-    }
-
     public function mount() 
     {
         $this->times = Time::all();
-        //dd($this->times);
     }
 
     public function edit(Campeonato $campeonato) 
@@ -61,8 +49,22 @@ class Campeonatos extends Component
 
     public function create() 
     {
+        $this->validate();
+        $campeonato = Campeonato::create([
+            'nome' => $this->nome,
+            'jogo' => $this->jogo,
+            'inicio' => $this->data_inicio,
+            'encerramento' => $this->data_fim,
+        ]);
+
+        foreach($this->timesSelected as $time)
+        {
+            $time = Time::find($time);
+            $time->campeonato_id = $campeonato->id;
+            $time->save();
+        }
+        $this->resetInputs();
         $this->emit('resetSelect');
-        dd($this->timesSelected);
     }
 
     public function render()

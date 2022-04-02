@@ -18,12 +18,18 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!--Styles--> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--Alpine js -->
     <script src="//unpkg.com/alpinejs" defer></script>
+    <!--Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css"
-      rel="stylesheet"
-    />
+
+    <!-- Tom -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/> 
+
+    <!-- Select2 -->
+    <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>-->
+
     @livewireStyles
     <style>
         [x-cloak] { 
@@ -32,35 +38,38 @@
     </style>
 </head>
 <body x-cloak x-data="{openModal: false}"
- :class="openModal ? 'overflow-hidden' : 'overflow-visible'"> <!-- junto ao x-cloack no style evita com que os madais abram ao carregar a pagina -->
+ :class="openModal ? 'overflow-hidden' : 'overflow-visible'" > <!-- junto ao x-cloack no style evita com que os madais abram ao carregar a pagina -->
 
     {{  $slot }}
     @livewireScripts
-    <script>
-        window.livewire.on('closeModal', function(modalName){
-            $(modalName).modal('hide');
-            //$('#addJogadorModal').modal('hide');
-        })  // era utilizado para fechar os modais antes da utilização do alpine js
-    </script>
 
+    <!-- Tom -->
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
     <script>
-      new TomSelect('#select-role', {
+      const tomSelectMultiple = new TomSelect('#select-role', {
         plugins: {
             'clear_button':{
                 'title':'Remover todas as opções selecionadas',
-            }
+                
+            },
+            'remove_button':{
+			    'title':'Remover esse time',
+		    }
         },
+        onDelete: function(values) {
+		    return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+	      },
         persist: false,
         create: true,
+        //preload: true,
       });
+
+      window.livewire.on('resetSelect', () => {
+          tomSelectMultiple.clear();
+      });
+
     </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario // também cria o botão de delete para remover todos os selects-->
 
-    <script>
-        window.livewire.on('resetSelect', () => {
-
-            $('#select-role').val(null).trigger('clear_button');
-        })  // era utilizado para fechar os modais antes da utilização do alpine js
-    </script>
+    <!--</script>-->
 </body>
 </html>

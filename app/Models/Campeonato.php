@@ -17,8 +17,8 @@ class Campeonato extends Model
         'jogo',
     ];
 
-    /*public function times() 
+    public function times() 
     {
-        return $this->hasMany(Times::class);
-    }*/
+        return $this->hasMany(Time::class);
+    }
 }

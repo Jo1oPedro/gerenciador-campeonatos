@@ -62,7 +62,7 @@
                     <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_termino" type="date" wire:model="data_fim">
                     </div>
                 </div>
-                <div class="">
+                <div class="mt-4" wire:ignore>
                     <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="select-role"
                         >Select multiple teams</label
                     >
@@ -70,7 +70,7 @@
                         <select
                         id="select-role"
                         multiple
-                        placeholder="Select teams..."
+                        placeholder="Selecionar times..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
                         wire:model="timesSelected"
@@ -86,7 +86,7 @@
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->
                     <div class="">
-                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="create()">
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="create()" @click="create = false">
                         Criar
                     </button>
                     </div>
@@ -95,6 +95,3 @@
         </div>
     </div>
 </div>
-
-        
-

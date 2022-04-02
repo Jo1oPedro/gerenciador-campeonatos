@@ -16,6 +16,7 @@ class TimeFactory extends Factory
         return [
             'nome' => $this->faker->firstName(),
             'pais_origem' => $this->faker->country(),
+            //'campeonato_id' => rand(1, 16),
         ];
     }
 }

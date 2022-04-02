@@ -20,7 +20,7 @@ class JogadorFactory extends Factory
             //'time' => $this->faker->firstName(),
             'nacionalidade' => $this->faker->city(),
             //'time_id' => Time::all()->random()->id,
-            'time_id' => rand(1,16),
+            //'time_id' => rand(1,16),
         ];
     }
 }

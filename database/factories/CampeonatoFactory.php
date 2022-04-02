@@ -16,6 +16,8 @@ class CampeonatoFactory extends Factory
         return [
             'nome' => $this->faker->firstName(),
             'jogo' => $this->faker->firstName(),
+            'inicio' => $this->faker->date(),
+            'encerramento' => $this->faker->date(),
         ];
     }
 

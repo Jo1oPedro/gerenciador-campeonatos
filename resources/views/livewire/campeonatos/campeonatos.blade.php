@@ -5,7 +5,7 @@
             @include('livewire.campeonatos.campeonato-create')
             <div class="p-5 h-screen bg-gray-100">
                 <span class="text-xl mb-2 display:inline-block">Campeonatos</span>
-                <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="btnNovo">
+                <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelect">
                     Adicionar novo campeonato 
                 </button>
                 <div>

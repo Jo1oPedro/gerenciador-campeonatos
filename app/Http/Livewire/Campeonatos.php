@@ -45,6 +45,7 @@ class Campeonatos extends Component
         $this->jogo = $campeonato->jogo;
         $this->data_inicio = $campeonato->inicio;
         $this->data_fim = $campeonato->encerramento;
+        $this->timesSelected = $campeonato->times()->get();
     }
 
     public function create() 

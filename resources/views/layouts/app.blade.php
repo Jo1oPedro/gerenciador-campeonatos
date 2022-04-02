@@ -68,7 +68,7 @@
         tomSelectMultiple.clear();
       });*/
 
-      document.getElementById('btnNovo').onclick = function() {
+      document.getElementById('resetSelect').onclick = function() {
         tomSelectMultiple.clear();
       };
 

@@ -64,7 +64,7 @@ class Campeonatos extends Component
             $time->save();
         }
         $this->resetInputs();
-        $this->emit('resetSelect');
+        //$this->emit('resetSelect');
     }
 
     public function render()

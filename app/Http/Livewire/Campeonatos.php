@@ -22,16 +22,17 @@ class Campeonatos extends Component
         dd('teste');
     }
 
-    protected $rules = [
+    protected $rules =  [
         'nome' => 'required|string|min:3',
         'data_inicio' => 'required|date',
         'data_fim' => 'required|date',
+        'timesSelected' => 'required',
     ];
 
     public function resetInputs()
     {
         $this->nome = $this->jogo = $this->inicio = $this->encerramento = '';
-        $this->timesSelected = []; 
+        $this->timesSelected = [];
     }
 
     public function mount() 
@@ -46,6 +47,12 @@ class Campeonatos extends Component
         $this->data_inicio = $campeonato->inicio;
         $this->data_fim = $campeonato->encerramento;
         $this->timesSelected = $campeonato->times()->get();
+        $this->emit('selectLoadOk', $this->timesSelected);
+    }
+
+    public function update()
+    {
+        dd($this->timesSelected);
     }
 
     public function create() 
@@ -68,7 +75,7 @@ class Campeonatos extends Component
         //$this->emit('resetSelect');
     }
 
-    public function render()
+    public function render($campeonato = [])
     {
         return view('livewire.campeonatos.campeonatos', [
             'campeonatos' => Campeonato::all(),

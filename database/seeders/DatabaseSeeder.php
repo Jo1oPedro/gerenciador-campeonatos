@@ -11,11 +11,12 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        \App\Models\Jogador::factory(16)->create();
-        \App\Models\Time::factory(16)->create();
-        \App\Models\Campeonato::factory(16)->create();
+        \App\Models\Jogador::factory(2)->create();
+        \App\Models\Time::factory(2)->create();
+        \App\Models\Campeonato::factory(2)->create();
     }
 }

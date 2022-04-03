@@ -1,11 +1,11 @@
 <div 
-    x-show.transition.duration.500ms="create"
+    x-show.transition.duration.500ms="edit"
     class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0"
     >
-    <div class="flex flex-col max-w-lg bg-white shadow-2xl rounded-lg border-2 border-gray-400 p-6" @click.away="create = false">
+    <div class="flex flex-col max-w-lg bg-white shadow-2xl rounded-lg border-2 border-gray-400 p-6" @click.away="edit = false">
         <div class="flex justify-between mb-4">
             <h3 class="font-bold text-2xl">Criar novo campeonato</h3>
-            <button @click="create = false">
+            <button @click="edit = false">
                 <svg version="1.1" id="Capa_1" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
                     <g>
@@ -24,69 +24,66 @@
             <form class="w-full max-w-sm">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="name">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-name">
                         Nome
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="name" type="text" wire:model="nome">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-name" type="text" wire:model="nome">
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-jogo">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-jogo">
                         Jogo
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-jogo" type="text" wire:model="jogo">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-jogo" type="text" wire:model="jogo">
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-data_inicio">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-data_inicio">
                         Data de inicio
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_inicio" type="date" wire:model="data_inicio">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-data_inicio" type="date" wire:model="data_inicio">
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-data_termino">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-data_termino">
                         Data de termino
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_termino" type="date" wire:model="data_fim">
+                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-data_termino" type="date" wire:model="data_fim">
                     </div>
                 </div>
                 <div class="mt-4" wire:ignore>
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="select-role"
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-role"
                         >Select multiple teams</label
                     >
                     <div class="relative flex w-full" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
-                        id="select-role"
+                        id="edit-role"
                         multiple
-                        placeholder="Selecionar times..."
+                        placeholder="Editar times..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
                         wire:model="timesSelected"
                         >
-                        @foreach ($times as $key => $time)
-                            <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
-                        @endforeach
+                        
                         </select>
                     </div>
                 </div>
-                
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->
                     <div class="">
-                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="create()" @click="create = false">
-                        Criar
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="update()" @click="edit = false">
+                        Atualizar
                     </button>
                     </div>
                 </div>

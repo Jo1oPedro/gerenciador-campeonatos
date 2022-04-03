@@ -63,6 +63,28 @@
         create: true,
         //preload: true,
       });
+      //edit multipleSelect
+      var tomEditMultiple = new TomSelect('#edit-role', {
+		maxItems: null,
+		valueField: 'id',
+		labelField: 'title',
+		searchField: 'title',
+        plugins: {
+            'clear_button':{
+              'title':'Remover todas as opções selecionadas',
+                
+            },
+            'remove_button':{
+			        'title':'Remover esse time',
+		        }
+        },
+        onDelete: function(values) {
+		    return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+	      },
+        persist: false,
+        create: true,
+        //preload: true,
+      });
 
       /*window.livewire.on('resetSelect', () => {
         tomSelectMultiple.clear();
@@ -71,6 +93,64 @@
       document.getElementById('resetSelect').onclick = function() {
         tomSelectMultiple.clear();
       };
+
+      window.livewire.on('selectLoadOk', ($timesSelected) =>{
+		/*alert('dale');
+		$('#edit-role').trigger('change');*/
+		/*tomEditMultiple.addOption({value:'test'});
+		tomEditMultiple.addOption({value:'cachorroAAAAAAAAAA'});
+		tomEditMultiple.refreshItems();*/
+		//var value = $("#newGroup").val();
+		//$('#edit-role').append("<option value=\"" + value + "\">" + value + "</option>");
+		//tomEditMultiple.addOption({value:'cachorroAAAAAAAAAA'});
+		
+		
+		for($cont = 0;$cont < $timesSelected.length; $cont++) 
+		{	
+			option = tomEditMultiple.addOption({id:$timesSelected[$cont].id, title: $timesSelected[$cont].nome});//.setValue('selected');
+			console.log(option);
+			$message = "*[data-value=" + '"' + option + '"]' + "";
+			var x = document.querySelector($message);
+			//console.log($message); 
+			//var x = document.querySelector('*[data-value="1"]');
+			x.selected = 'selected';
+			console.log(x);
+			//document.querySelector('*[data-value="1"]').selected = 'selected';
+			//console.log(document.querySelector('*[data-value="1"]'));
+			//tomEditMultiple.addOption({value: 'avenger', title: 'Spectrometer'});
+			//tomEditMultiple.addOption({id: 1, title: 'Spectrometer'},);	
+		}
+
+
+		/*tomEditMultiple.destroy()
+		tomEditMultiple = new TomSelect('#edit-role', {
+			maxItems: null,
+			valueField: 'id',
+			labelField: 'title',
+			plugins: {
+				'clear_button':{
+				'title':'Remover todas as opções selecionadas',
+					
+				},
+				'remove_button':{
+						'title':'Remover esse time',
+					}
+			},
+			options: [ 
+				{id: 1, title: 'Spectrometer'},
+				{id: 2, title: 'Star Chart'},
+				{id: 3, title: 'Electrical Tape'}
+			],
+			onDelete: function(values) {
+				return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+			},
+			persist: false,
+			create: true,
+			//preload: true,
+      	});*/
+		//tomEditMultiple.addItem('test');
+		alert('aaa');
+	  });
 
     </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario // também cria o botão de delete para remover todos os selects-->
 

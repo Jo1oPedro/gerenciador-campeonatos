@@ -73,7 +73,7 @@
                         placeholder="Selecionar times..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
-                        wire:model="timesSelected"
+                        wire:model="timesNoCampeonato"
                         >
                         @foreach ($times as $key => $time)
                             <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>

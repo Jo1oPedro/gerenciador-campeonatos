@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Time;
+use App\Models\Times_campeonato;
 
 class Campeonato extends Model
 {
@@ -12,13 +13,13 @@ class Campeonato extends Model
 
     protected $fillable = [
         'nome',
-        'data_inicio',
-        'data_fim',
+        'inicio',
+        'encerramento',
         'jogo',
     ];
 
     public function times() 
     {
-        return $this->hasMany(Time::class);
+        return $this->hasMany(Times_campeonato::class);
     }
 }

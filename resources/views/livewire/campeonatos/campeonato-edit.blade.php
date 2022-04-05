@@ -4,7 +4,7 @@
     >
     <div class="flex flex-col max-w-lg bg-white shadow-2xl rounded-lg border-2 border-gray-400 p-6" @click.away="edit = false">
         <div class="flex justify-between mb-4">
-            <h3 class="font-bold text-2xl">Criar novo campeonato</h3>
+            <h3 class="font-bold text-2xl">Editar campeonato</h3>
             <button @click="edit = false">
                 <svg version="1.1" id="Capa_1" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="mt-4">
                     <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-role"
-                        >Select multiple teams</label
+                        >Selecione os times do campeonato</label
                     >
                     <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
@@ -73,11 +73,14 @@
                         placeholder="Editar times..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
-                        wire:model.defer="timesSelected2"
+                        wire:model.defer="timesNoCampeonato"
                         >
-                        @if(is_object($timesSelected))
-                            @foreach ($timesSelected as $time)
-                                <option value="{{ $time->id  }}" selected>{{ $time->nome }}</option>
+                        @if(is_object($timesNoCampeonato) && ((count($timesNoCampeonato) > 0) || (count($timesForaDoCampeonato) > 0)) )
+                            @foreach ($timesNoCampeonato as $time)
+                                <option value="{{ $time->id }}" selected style="background-color:green;color:blue">Time já selecionado: {{ $time->nome }}</option>
+                            @endforeach
+                            @foreach($timesForaDoCampeonato as $time)
+                                <option value="{{ $time->id }}">Time não selecionado: {{ $time->nome }}</option>
                             @endforeach
                         @endif
                         <!--<option selected>Macaco triste</option>

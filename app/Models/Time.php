@@ -17,6 +17,7 @@ class Time extends Model
         'pontuacao',
         'vitorias',
         'derrotas',
+        'campeonato_id',
     ];
 
     public function Jogadores()

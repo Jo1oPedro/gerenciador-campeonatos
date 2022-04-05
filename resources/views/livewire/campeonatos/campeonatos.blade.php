@@ -40,7 +40,7 @@
                                             <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" id="createEditSelect" wire:click.prevent="edit({{ $campeonato->id }})" @click="edit = true">
                                                 Editar                                        
                                             </button>
-                                            <button class="ml-2 bg-red-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r">
+                                            <button class="ml-2 bg-red-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($campeonato->nome) }}?') || event.stopImmediatePropagation()" wire:click.prevent="delete({{ $campeonato->id }})">
                                                 Excluir                                       
                                             </button>
                                         </div>    
@@ -49,14 +49,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
-                </div>
-                
+                </div> 
             </div>
-
         </div>
     </div>
-
 </div>  
 
 

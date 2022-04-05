@@ -124,11 +124,12 @@ class Campeonatos extends Component
             'encerramento' => $this->data_fim,
         ]);
 
-        foreach($this->timesNoCampeonato as $time)
+        foreach($this->timesNoCampeonato as $idTime)
         {
-            $time = Time::find($time);
-            $time->campeonato_id = $campeonato->id;
-            $time->save();
+            Times_campeonato::create([
+                'time_id' => $idTime,
+                'campeonato_id' => $campeonato->id,
+            ]);
         }
         $this->resetInputs();
         //$this->emit('resetSelect');

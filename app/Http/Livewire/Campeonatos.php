@@ -35,13 +35,18 @@ class Campeonatos extends Component
 
     public function resetInputs()
     {
-        $this->nome = $this->jogo = $this->inicio = $this->encerramento = '';
-        $this->timesNoCampeonato = '';
+        $this->nome = $this->jogo = $this->data_inicio = $this->data_fim = '';
+        $this->timesNoCampeonato = $this->timesForaDoCampeonato = $this->idTimesNoCampeonato = [];
     }
 
     public function mount() 
     {
         $this->times = Time::all();
+    }
+
+    public function delete(Campeonato $campeonato)
+    {
+        $campeonato->delete();
     }
 
     public function edit(Campeonato $campeonato) 
@@ -52,6 +57,7 @@ class Campeonatos extends Component
         $this->data_inicio = $campeonato->inicio;
         $this->data_fim = $campeonato->encerramento;
         $this->timesNoCampeonato = $campeonato->times->where('campeonato_id', $this->campeonato->id); // não está sendo devidamente utilizada pois não está sendo possivel colocar o attributo de selected para as options no edit
+        //dd($this->timesNoCampeonato);
         if(count($this->timesNoCampeonato) > 0)
         {
             foreach($this->timesNoCampeonato as $key => $time)
@@ -112,6 +118,7 @@ class Campeonatos extends Component
             }
         }
         $this->campeonato->save();
+        //$this->resetInputs();
     }
 
     public function create() 

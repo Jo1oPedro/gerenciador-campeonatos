@@ -62,20 +62,27 @@
                     <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-data_termino" type="date" wire:model="data_fim">
                     </div>
                 </div>
-                <div class="mt-4" wire:ignore>
+                <div class="mt-4">
                     <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-role"
                         >Select multiple teams</label
                     >
-                    <div class="relative flex w-full" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                    <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
                         id="edit-role"
                         multiple
                         placeholder="Editar times..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
-                        wire:model="timesSelected"
+                        wire:model.defer="timesSelected2"
                         >
-                        
+                        @if(is_object($timesSelected))
+                            @foreach ($timesSelected as $time)
+                                <option value="{{ $time->id  }}" selected>{{ $time->nome }}</option>
+                            @endforeach
+                        @endif
+                        <!--<option selected>Macaco triste</option>
+                        <option selected>Monkey</option>
+                        <option selected>Macaco muito triste</option>-->
                         </select>
                     </div>
                 </div>

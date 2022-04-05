@@ -62,11 +62,11 @@
                     <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_termino" type="date" wire:model="data_fim">
                     </div>
                 </div>
-                <div class="mt-4" wire:ignore>
+                <div class="mt-4" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                     <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="select-role"
                         >Select multiple teams</label
                     >
-                    <div class="relative flex w-full" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                    <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
                         id="select-role"
                         multiple

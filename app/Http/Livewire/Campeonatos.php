@@ -16,6 +16,7 @@ class Campeonatos extends Component
     public $data_fim;
     public $timesSelected = [];
     public $times = [];
+    public $timesSelected2 = [];
 
     public function teste()
     {
@@ -46,13 +47,16 @@ class Campeonatos extends Component
         $this->jogo = $campeonato->jogo;
         $this->data_inicio = $campeonato->inicio;
         $this->data_fim = $campeonato->encerramento;
-        $this->timesSelected = $campeonato->times()->get();
-        $this->emit('selectLoadOk', $this->timesSelected);
+        //$this->timesSelected = $campeonato->times()->get();
+        $this->timesSelected = $campeonato->times;
+        //dd($campeonato->times);
+        //$this->emit('selectLoadOk', $this->timesSelected);
+        //$this->emit('tiraSelected', $this->timesSelected);
     }
 
     public function update()
     {
-        dd($this->timesSelected);
+        dd($this->timesSelected2);
     }
 
     public function create() 

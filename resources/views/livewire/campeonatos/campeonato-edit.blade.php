@@ -24,42 +24,62 @@
             <form class="w-full max-w-sm">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-name">
-                        Nome
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-name">
+                            Nome
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-name" type="text" wire:model="nome">
+                        <input class="form-control @error('nome') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-name" type="text" wire:model="nome">
+                        <div class="invalid-feedback">
+                            @error('nome')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-jogo">
-                        Jogo
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-jogo">
+                            Jogo
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-jogo" type="text" wire:model="jogo">
+                        <input class="form-control @error('jogo') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-jogo" type="text" wire:model="jogo">
+                        <div class="invalid-feedback">
+                            @error('jogo')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-data_inicio">
-                        Data de inicio
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-dataInicio">
+                            Data de inicio
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-data_inicio" type="date" wire:model="data_inicio">
+                        <input class="form-control @error('dataInicio') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-dataInicio" type="date" wire:model="dataInicio">
+                        <div class="invalid-feedback">
+                            @error('dataInicio')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-data_termino">
-                        Data de termino
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-dataFim">
+                            Data de termino
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-data_termino" type="date" wire:model="data_fim">
+                        <input class="form-control @error('dataFim') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-dataFim" type="date" wire:model="dataFim">
+                        <div class="invalid-feedback">
+                            @error('dataFim')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="mt-4">

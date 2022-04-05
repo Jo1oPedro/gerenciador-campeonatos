@@ -24,42 +24,62 @@
             <form class="w-full max-w-sm">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="name">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="nome">
                         Nome
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="name" type="text" wire:model="nome">
+                        <input class="form-control @error('nome') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" class="form-control @error('nome') is-invalid @enderror" id="nome" type="text" wire:model="nome">
+                        <div class="invalid-feedback">
+                            @error('nome')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-jogo">
-                        Jogo
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-jogo">
+                            Jogo
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-jogo" type="text" wire:model="jogo">
+                        <input class="form-control @error('jogo') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-jogo" type="text" wire:model="jogo">
+                        <div class="invalid-feedback">
+                            @error('jogo')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-data_inicio">
-                        Data de inicio
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-dataInicio">
+                            Data de inicio
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_inicio" type="date" wire:model="data_inicio">
+                        <input class="form-control @error('dataInicio') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-dataInicio" type="date" wire:model="dataInicio">
+                        <div class="invalid-feedback">
+                            @error('dataInicio')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-data_termino">
-                        Data de termino
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="create-dataFim">
+                            Data de termino
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-data_termino" type="date" wire:model="data_fim">
+                        <input class="form-control @error('dataFim') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="create-dataFim" type="date" wire:model="dataFim">
+                        <div class="invalid-feedback">
+                            @error('dataFim')
+                                {{$message}}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="mt-4" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
@@ -73,7 +93,7 @@
                         placeholder="Selecionar times..."
                         autocomplete="off"
                         class="block w-full rounded-sm cursor-pointer focus:outline-none"
-                        wire:model="timesNoCampeonato"
+                        wire:model.defer="timesNoCampeonato"
                         >
                         @foreach ($times as $key => $time)
                             <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>

@@ -22,7 +22,7 @@ class CreateTimesTable extends Migration
             $table->integer('derrotas')->default(0);
 
             //$table->foreignId('campeonato_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('campeonato_id')->nullable()->constrained()->nullOnDelete();
+            //$table->foreignId('campeonato_id')->nullable()->constrained()->nullOnDelete();
             
             $table->timestamps();
         });

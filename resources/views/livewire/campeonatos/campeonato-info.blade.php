@@ -24,42 +24,42 @@
             <form class="w-full max-w-sm">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="inline-full-name">
-                        Nome
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="inline-full-name">
+                            Nome
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" wire:model="nome" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" wire:model="nome" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="jogo">
-                        Jogo
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="jogo">
+                            Jogo
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="jogo" type="text" wire:model="jogo" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="jogo" type="text" wire:model="jogo" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="data_inicio">
-                        Data de inicio
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="info-dataInicio">
+                            Data de inicio
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="data_inicio" type="date" wire:model="data_inicio" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="info-dataInicio" type="date" wire:model="dataInicio" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="data_termino">
-                        Data de termino
-                    </label>
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="data_termino">
+                            Data de termino
+                        </label>
                     </div>
                     <div class="md:w-2/3">
-                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="data_termino" type="date" wire:model="data_fim" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="data_termino" type="date" wire:model="data_fim" readonly>
                     </div>
                 </div>
                 <div class="inline-block relative w-full">

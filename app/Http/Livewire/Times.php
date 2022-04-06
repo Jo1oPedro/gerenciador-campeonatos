@@ -22,9 +22,10 @@ class Times extends Component
     public $derrotas;
     public $jogadoresNoTime = [];
     public $jogadoresSemTime;
-    public $campeonato;
+    public $campeonatos;
     public $campeonatosDoTime = [];
-    public $searchTerm;
+    public $campeonatosSemEsseTime = [];
+    public $searchTerm = "";
 
     public function updated($propertyName) {
         $this->validateOnly($propertyName);
@@ -37,6 +38,7 @@ class Times extends Component
         'vitorias' => 'sometimes|required|integer|min:0',
         'derrotas' => 'sometimes|required|integer|min:0',
         'jogadoresNoTime' => 'sometimes',
+        'campeonatosDoTime' => 'sometimes',
     ];
 
     public function messages()
@@ -62,6 +64,7 @@ class Times extends Component
 
     public function create() 
     {
+        $this->resetValidation();
         $this->pontuacao = $this->vitorias = $this->derrotas = 0;
         $this->validate();
         $time = Time::create([
@@ -84,18 +87,18 @@ class Times extends Component
 
     public function read(Time $time) 
     {
-        $this->resetInputs();
         $this->nome = $time->nome;
         $this->paisOrigem = $time->pais_origem;
         $this->pontuacao = $time->pontuacao;
         $this->vitorias = $time->vitorias;
         $this->derrotas = $time->derrotas;
         $this->jogadoresNoTime = $time->jogadores;
+        $this->campeonatosDoTime = Times_campeonato::select('id')->where('time_id', $time->id)->get();
+        $this->campeonatosDoTime = Campeonato::whereIn('id', $this->campeonatosDoTime->toArray())->get();
     }
 
     public function edit(Time $time)
     {
-        $this->resetInputs();
         $this->time = $time;
         $this->nome = $time->nome;
         $this->paisOrigem = $time->pais_origem;
@@ -104,6 +107,9 @@ class Times extends Component
         $this->derrotas = $time->derrotas;
         $this->jogadoresNoTime = $time->jogadores;
         $this->jogadoresSemTime = Jogador::where('time_id', NULL)->get();
+        $this->campeonatosDoTime = Times_campeonato::select('campeonato_id')->where('time_id', $time->id)->get()->toArray();
+        $this->campeonatosSemEsseTime = Campeonato::whereNotIn('id', $this->campeonatosDoTime)->get();
+        $this->campeonatosDoTime = Campeonato::whereIn('id', $this->campeonatosDoTime)->get();
     }
 
     public function update()
@@ -124,7 +130,6 @@ class Times extends Component
         $this->jogadoresNoTime = Jogador::whereIn('id', $this->jogadoresNoTime)->get();
         foreach($this->jogadoresNoTime as $jogador)
         {
-            echo $jogador->time_id;
             if($jogador->time_id != NULL)
             {
                 $jogador->time_id = NULL;
@@ -132,6 +137,33 @@ class Times extends Component
                 $jogador->time_id = $this->time->id;
             }
             $jogador->save();
+        }
+        if(is_array($this->campeonatosDoTime))
+        {
+            $idsCampeonatosDoTime = $this->campeonatosDoTime;
+            $this->campeonatosDoTime = Times_campeonato::whereIn('campeonato_id', $this->campeonatosDoTime)
+                                                        ->where('time_id', $this->time->id)
+                                                        ->get();
+            $idCampeonatosSemEsseTime = [];
+            foreach($this->campeonatosDoTime->toArray() as $key => $campeonato) 
+            {
+                $idCampeonatosSemEsseTime[$key] = $campeonato['campeonato_id'];
+            }
+            foreach($this->campeonatosDoTime as $campeonato)
+            {
+                if($campeonato->time_id == $this->time->id)
+                {
+                    $campeonato->delete();
+                }
+            }
+            $idCampeonatosSemEsseTime = array_diff($idsCampeonatosDoTime, $idCampeonatosSemEsseTime);
+            foreach($idCampeonatosSemEsseTime as $campeonato)
+            {
+                Times_campeonato::create([
+                    'time_id' => $this->time->id,
+                    'campeonato_id' => $campeonato,
+                ]);
+            }
         }
         session()->flash('message', "Time $this->nome atualizado com sucesso");
         $this->resetInputs();
@@ -141,6 +173,7 @@ class Times extends Component
     {
         $nome = $time->nome;
         $time->delete();
+        $this->resetInputs();
         session()->flash('message', "Time $time->nome deletado com sucesso");
     }
 
@@ -150,8 +183,8 @@ class Times extends Component
     }
 
     public function resetInputs() {
-        $this->time_id = $this->nome = $this->paisOrigem = $this->pontuacao = $this->vitorias = $this->derrotas = '';
-        $this->jogadoresNoTime = $this->jogadoresSemTime = [];
+        $this->time = $this->nome = $this->paisOrigem = $this->pontuacao = $this->vitorias = $this->derrotas = '';
+        $this->jogadoresNoTime = $this->jogadoresSemTime = $this->campeonatosDoTime = $this->campeonatosSemEsseTime = [];
         $this->resetValidation();
     }
 

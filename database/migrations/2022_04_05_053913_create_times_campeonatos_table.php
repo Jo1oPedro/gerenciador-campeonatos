@@ -15,8 +15,11 @@ class CreateTimesCampeonatosTable extends Migration
     {
         Schema::create('times_campeonatos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('time_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('campeonato_id')->nullable()->constrained()->nullOnDelete();;
+            //$table->foreignId('time_id')->nullable()->constrained()->nullOnDelete();
+            //$table->foreignId('campeonato_id')->nullable()->constrained()->nullOnDelete();
+            
+            $table->foreignId('time_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('campeonato_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

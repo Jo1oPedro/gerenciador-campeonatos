@@ -29,7 +29,7 @@
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('nome') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" class="form-control @error('nome') is-invalid @enderror" id="edit-nome" type="text" wire:model="nome">
+                        <input class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-nome" type="text" wire:model.defer="nome">
                         <div class="invalid-feedback">
                             @error('nome')
                                 {{$message}}
@@ -44,7 +44,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('paisOrigem') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-paisOrigem" type="text" wire:model="paisOrigem">
+                        <input class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-paisOrigem" type="text" wire:model.defer="paisOrigem">
                         <div class="invalid-feedback">
                             @error('paisOrigem')
                                 {{$message}}
@@ -59,7 +59,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('pontuacao') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-pontuacao" type="number" wire:model="pontuacao">
+                        <input class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-pontuacao" type="number" wire:model.defer="pontuacao">
                         <div class="invalid-feedback">
                             @error('pontuacao')
                                 {{$message}}
@@ -74,7 +74,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('vitorias') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-vitorias" type="number" wire:model="vitorias">
+                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-vitorias" type="number" wire:model.defer="vitorias">
                         <div class="invalid-feedback">
                             @error('vitorias')
                                 {{$message}}
@@ -89,7 +89,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('derrotas') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-derrotas" type="number" wire:model="derrotas">
+                        <input class=" appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-derrotas" type="number" wire:model.defer="derrotas">
                         <div class="invalid-feedback">
                             @error('derrotas')
                                 {{$message}}
@@ -99,11 +99,10 @@
                 </div>
                 <div class="mt-4">
                     <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-role"
-                        >Selecione os times do campeonato
+                        >Selecione os jogadores do time
 					</label>
                     <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
-							id="edit-role"
 							multiple
 							placeholder="Editar times..."
 							autocomplete="off"
@@ -116,6 +115,32 @@
 								@endforeach
 								@foreach($jogadoresSemTime as $jogador)
 									<option value="{{ $jogador->id }}">Jogador não selecionado: {{ $jogador->nome }}</option>
+								@endforeach
+							@endif
+                        <!--<option selected>Macaco triste</option>
+                        <option selected>Monkey</option>
+                        <option selected>Macaco muito triste</option>-->
+                        </select>
+                    </div>
+                </div>
+				<div class="mt-4">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-role"
+                        >Selecione os campeonatos do time
+					</label>
+                    <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                        <select
+							multiple
+							placeholder="Editar times..."
+							autocomplete="off"
+							class="block w-full rounded-sm cursor-pointer focus:outline-none"
+							wire:model.defer="campeonatosDoTime"
+                        >
+							@if(is_object($campeonatosDoTime) && ((count($campeonatosDoTime) > 0) || (count($campeonatosSemEsseTime) > 0)) )
+								@foreach ($campeonatosDoTime as $campeonato)
+									<option value="{{ $campeonato->id }}" selected style="background-color:green;color:blue">Campeonato já selecionado: {{ $campeonato->nome }}</option>
+								@endforeach
+								@foreach($campeonatosSemEsseTime as $campeonato)
+									<option value="{{ $campeonato->id }}">Campeonato não selecionado: {{ $campeonato->nome }}</option>
 								@endforeach
 							@endif
                         <!--<option selected>Macaco triste</option>

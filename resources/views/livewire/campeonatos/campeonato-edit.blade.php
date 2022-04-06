@@ -29,7 +29,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('nome') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-name" type="text" wire:model="nome">
+                        <input class="form-control @error('nome') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-name" type="text" wire:model.defer="nome">
                         <div class="invalid-feedback">
                             @error('nome')
                                 {{$message}}
@@ -44,7 +44,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('jogo') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-jogo" type="text" wire:model="jogo">
+                        <input class="form-control @error('jogo') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-jogo" type="text" wire:model.defer="jogo">
                         <div class="invalid-feedback">
                             @error('jogo')
                                 {{$message}}
@@ -59,7 +59,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('dataInicio') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-dataInicio" type="date" wire:model="dataInicio">
+                        <input class="form-control @error('dataInicio') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-dataInicio" type="date" wire:model.defer="dataInicio">
                         <div class="invalid-feedback">
                             @error('dataInicio')
                                 {{$message}}
@@ -74,7 +74,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="form-control @error('dataFim') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-dataFim" type="date" wire:model="dataFim">
+                        <input class="form-control @error('dataFim') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-dataFim" type="date" wire:model.defer="dataFim">
                         <div class="invalid-feedback">
                             @error('dataFim')
                                 {{$message}}

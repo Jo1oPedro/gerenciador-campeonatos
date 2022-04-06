@@ -101,6 +101,14 @@
                         </select>
                     </div>
                 </div>
+                <div class="mt-4" wire:ignore hidden> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                    <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                        <select
+                        id="select-campeonato"
+                        >
+                        </select>
+                    </div>
+                </div>
                 
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->

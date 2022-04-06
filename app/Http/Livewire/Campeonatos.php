@@ -52,7 +52,6 @@ class Campeonatos extends Component
     {
         $this->nome = $this->jogo = $this->dataInicio = $this->dataFim = $this->campeonato = '';
         $this->timesNoCampeonato = $this->timesForaDoCampeonato = $this->idTimesNoCampeonato = [];
-        $this->resetValidation();
     }
 
     public function updated($propertyName) {
@@ -85,12 +84,11 @@ class Campeonatos extends Component
             session()->flash('message', "Campeonato $campeonato->nome criado com sucesso");
             $this->render();
         }
-        session()->flash('error', "Campeonato $this->nome já existe");
+        session()->flash('error', "Campeonato $this->nome no jogo $this->jogo já existe");
     }
 
     public function edit(Campeonato $campeonato) 
     {   
-        $this->resetInputs();
         $this->campeonato = $campeonato;
         $this->nome = $campeonato->nome;
         $this->jogo = $campeonato->jogo;
@@ -116,7 +114,6 @@ class Campeonatos extends Component
             $this->timesForaDoCampeonato = Time::all();
             $this->idTimesNoCampeonato = [];
         }
-        $this->resetValidation();
     }
 
     public function update()
@@ -130,7 +127,7 @@ class Campeonatos extends Component
             ])->get();
             if(count($campeonato) > 0)
             {
-                session()->flash('error', "Campeonato $this->nome já existe");
+                session()->flash('error', "Campeonato $this->nome no jogo $this->jogo já existe");
                 $this->render();
             }
         }
@@ -171,6 +168,8 @@ class Campeonatos extends Component
         }
         $this->campeonato->save();
         session()->flash('message', "Campeonato {$this->campeonato->nome} atualizado com sucesso");
+        $this->resetInputs();
+        $this->resetValidation();
     }
 
     public function delete(Campeonato $campeonato)

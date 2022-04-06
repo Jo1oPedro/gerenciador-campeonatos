@@ -82,7 +82,20 @@
                         <option disabled selected>Jogadores:</option> 
                         @if(is_object($jogadoresNoTime))   
                             @foreach($jogadoresNoTime as $key => $jogador)
-                            <option>Jogador {{ $key+1 }}: {{ $jogador->nome }}</option>
+                                <option>Jogador {{ $key+1 }}: {{ $jogador->nome }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="inline-block relative w-full">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="view-jogadores">
+                        Campeonatos do time
+                    </label>
+                    <select class="mt-4 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" id="view-jogadores">
+                        <option disabled selected>Campeonatos:</option> 
+                        @if(is_object($campeonatosDoTime))   
+                            @foreach($campeonatosDoTime as $key => $campeonato)
+                                <option>Campeonato {{ $key+1 }}: {{ $campeonato->nome }}</option>
                             @endforeach
                         @endif
                     </select>

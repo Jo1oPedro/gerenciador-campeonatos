@@ -180,6 +180,11 @@ class Campeonatos extends Component
         $this->resetInputs();
     }
 
+    public function updatingSearchInput()
+    {
+        $this->gotoPage(1);
+    }
+
     public function mount() 
     {
         $this->times = Time::all();
@@ -188,6 +193,10 @@ class Campeonatos extends Component
     public function render()
     {
         $searchTerm = '%' . $this->searchTerm . '%';
+        if($searchTerm != '%%')
+        {
+            $this->updatingSearchInput();
+        }
         $paginate = 15;
         $campeonatos = Campeonato::where('nome', 'like', $searchTerm)->paginate($paginate);
         return view('livewire.campeonatos.campeonatos', [

@@ -1,10 +1,9 @@
-<div x-data="{create: false}" >
-    <div x-data="{info:false}" >
-        <div x-data="{edit:false}">
+<div x-data="{times: false}" >
+    @include('livewire.dashBoards.campeonatos.dashboard-info-times')
             <div class="p-5 h-screen bg-gray-100">
                 <span class="text-xl mb-2 display:inline-block">Campeonatos</span>
                 <div>
-                    <input type="text" class="mb-4 hover:bg-gray-400 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
+                    <input type="text" class="mb-4 hover:bg-gray-400 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTermCampeonato" />
                 </div>
                 <div class="overflow-auto rounded-lg shadow">
                     <table class="w-full cursor-pointer">
@@ -15,7 +14,7 @@
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Jogo</th>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Inicio</th>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Encerramento</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Ações</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Informação dos times no campeonato</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
@@ -28,14 +27,8 @@
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->encerramento }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                                         <div class="inline-flex">
-                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="edit({{ $campeonato->id }})" @click="info = true">
-                                                Visualizar 
-                                            </button>
-                                            <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" id="createEditSelect" wire:click.prevent="edit({{ $campeonato->id }})" @click="edit = true">
-                                                Editar                                        
-                                            </button>
-                                            <button class="ml-2 bg-red-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($campeonato->nome) }}?') || event.stopImmediatePropagation()" wire:click.prevent="delete({{ $campeonato->id }})">
-                                                Excluir                                       
+                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="getTimes({{ $campeonato->id }})" @click="times = true">
+                                                Visualizar informação dos times no campeonato
                                             </button>
                                         </div>    
                                     </td>
@@ -44,10 +37,11 @@
                         </tbody>
                     </table>
                 </div> 
-                {{ $campeonatos->links() }}
+                <div x-show="!times">
+                    <!--{{ $campeonatos->links() }}-->
+                    {{ $campeonatos->onEachSide(1)->links() }}
+                </div>
             </div>
-        </div>
-    </div>
 </div>  
 
 

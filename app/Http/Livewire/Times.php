@@ -177,6 +177,11 @@ class Times extends Component
         session()->flash('message', "Time $time->nome deletado com sucesso");
     }
 
+    public function updatingSearchInput()
+    {
+        $this->gotoPage(1);
+    }
+
     public function resetErrors() 
     {
         $this->resetValidation();
@@ -197,6 +202,10 @@ class Times extends Component
     {
         $this->jogadores = Jogador::where('time_id', NULL)->get();
         $searchTerm = '%'.$this->searchTerm.'%';
+        if($searchTerm != '%%')
+        {
+            $this->updatingSearchInput();
+        }
         $paginate = 15;
         $times = Time::where('nome', 'like', $searchTerm)->paginate($paginate);
         return view('livewire.times.times', [ 

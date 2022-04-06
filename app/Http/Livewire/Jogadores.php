@@ -144,6 +144,11 @@ class Jogadores extends Component
         $this->resetInputs();
     }
 
+    public function updatingSearchInput()
+    {
+        $this->gotoPage(1);
+    }
+
     public function mount() 
     {
         $this->allTimes = Time::all();
@@ -152,6 +157,10 @@ class Jogadores extends Component
     public function render()
     {
         $searchTerm = '%'.$this->searchTerm.'%';
+        if($searchTerm != '%%')
+        {
+            $this->updatingSearchInput();
+        }
         $paginate = 15;
         $jogadores = Jogador::where('nome', 'like', $searchTerm)->paginate($paginate);
         $timesName = [];

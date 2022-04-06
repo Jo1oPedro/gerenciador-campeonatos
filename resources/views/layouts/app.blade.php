@@ -85,7 +85,7 @@
 
       document.getElementById('resetSelect').onclick = function() {
         tomSelectMultiple.clear();
-        tomSelectMultipleCampeonato.clear
+        tomSelectMultipleCampeonato.clear();
       };
 
     </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario // também cria o botão de delete para remover todos os selects-->

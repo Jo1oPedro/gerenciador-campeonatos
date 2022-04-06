@@ -157,24 +157,18 @@ class Times extends Component
 
     public function mount()
     {
-        $this->jogadores = Jogador::where('time_id', NULL)->get();
         $this->campeonatos = Campeonato::all();
     }
     
     public function render()
     {
+        $this->jogadores = Jogador::where('time_id', NULL)->get();
         $searchTerm = '%'.$this->searchTerm.'%';
         $paginate = 15;
         $times = Time::where('nome', 'like', $searchTerm)->paginate($paginate);
-        //$time = Time::where('id', 1)->get();
-        //dd($time[0]->nome);
-        //$jogador = $time[0]->Jogadores()->get();
-        //dd($jogador[2]->nome);
-        //$this->allJogadores = Jogador::where('id', 3)->get();
-        //dd($this->allJogadores[0]->nome);
         return view('livewire.times.times', [ 
             'times' => $times,
-            //'allJogadores' => $this->allJogadores,
+            'jogadores' => $this->jogadores,
         ]);
     }
 }

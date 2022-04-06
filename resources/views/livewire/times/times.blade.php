@@ -1,13 +1,10 @@
-
-
-
 <div x-data="{create: false}" >
     <div x-data="{info:false}" >
         <div x-data="{edit:false}">
-            <!--@include('livewire.times.times-create')-->
+            @include('livewire.times.times-create')
             <div class="p-5 h-screen bg-gray-100">
                 <span class="text-xl mb-2 display:inline-block">Jogadores</span>
-                <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelectJogador">
+                <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelect">
                     Adicionar novo Time 
                 </button>
                 <div>

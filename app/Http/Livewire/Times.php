@@ -14,11 +14,11 @@ class Times extends Component
     
     public $time_id;
     public $nome;
-    public $pais_origem;
+    public $paisOrigem;
     public $pontuacao;
     public $vitorias;
     public $derrotas;
-    public $allJogadores = [];
+    public $jogadoresNoTime = [];
     public $searchTerm;
 
     public function getJogadores(Time $time) 
@@ -36,7 +36,7 @@ class Times extends Component
 
     protected $rules = [
         'nome' => 'required|string|min:2',
-        'pais_origem' => 'required|string|min:2',
+        'paisOrigem' => 'required|string|min:2',
         'pontuacao' => 'sometimes|required|integer|',
         'vitorias' => 'sometimes|required|integer|min:0',
         'derrotas' => 'sometimes|required|integer|min:0',
@@ -48,9 +48,9 @@ class Times extends Component
             'nome.required' => 'O campo :attribute é obrigatorio',
             'nome.string' => 'O campo :attribute precisa ser um texto',
             'nome.min' => 'O campo :attribute precisa ter pelo menos :min caracteres',
-            'pais_origem.required' => 'O campo pais de origem é obrigatorio',
-            'pais_origem.string' => 'O campo pais de origem precisa ser um texto',
-            'pais_origem.min' => 'O campo pais de origem precisa ter pelo menos :min caracteres',
+            'paisOrigem.required' => 'O campo pais de origem é obrigatorio',
+            'paisOrigem.string' => 'O campo pais de origem precisa ser um texto',
+            'paisOrigem.min' => 'O campo pais de origem precisa ter pelo menos :min caracteres',
             'pontuacao.required' => 'O campo :attribute é obrigatorio',
             'pontuacao.integer' => 'O campo :attribute precisa ser um número inteiro',
             'vitorias.required' => 'O campo :attribute é obrigatorio',
@@ -67,7 +67,7 @@ class Times extends Component
         $this->resetErrors();
         $this->time_id = $time->id;
         $this->nome = $time->nome;
-        $this->pais_origem = $time->pais_origem;
+        $this->paisOrigem = $time->paisOrigem;
         $this->pontuacao = $time->pontuacao;
         $this->vitorias = $time->vitorias;
         $this->derrotas = $time->derrotas;
@@ -80,35 +80,35 @@ class Times extends Component
         $this->validate();
         if(!$this->time_id) {
             session()->flash('error', "Ocorreu um problema ao atualizar o time $this->nome");
-            $this->resetInput();
+            $this->resetInputs();
             $this->emit('closeModal', '#updateTimeModal');
             $this->render();
         }
         Time::where('id', $this->time_id)->update([
             'nome' => $this->nome,
-            'pais_origem' => $this->pais_origem,
+            'pais_origem' => $this->paisOrigem,
             'pontuacao' => $this->pontuacao,
             'vitorias' => $this->vitorias,
             'derrotas' => $this->derrotas,
         ]);
         session()->flash('message', "Time $this->nome atualizado com sucesso");
-        $this->resetInput();
+        $this->resetInputs();
         $this->emit('closeModal', '#updateTimeModal');
     }
 
-    public function store() 
+    public function create() 
     {
         $this->pontuacao = $this->vitorias = $this->derrotas = 0;
         $this->validate();
-
-        Time::create([
+        $time = Time::create([
             'nome' => $this->nome,
-            'pais_origem' => $this->pais_origem,
+            'pais_origem' => $this->paisOrigem,
         ]);
-
+        Jogador::whereIn('id', $this->jogadoresNoTime)->update([
+            'time_id' => $time->id,
+        ]);
         session()->flash('message', "Time $this->nome criado com sucesso");
-        $this->resetInput();
-        $this->emit('closeModal', '#addTimeModal');
+        $this->resetInputs();
     }
 
     public function delete(Time $time) 
@@ -123,9 +123,14 @@ class Times extends Component
         $this->resetValidation();
     }
 
-    public function resetInput() {
-        $this->time_id = $this->nome = $this->pais_origem = $this->pontuacao = $this->vitorias = $this->derrotas = $this->allJogadores = '';
+    public function resetInputs() {
+        $this->time_id = $this->nome = $this->paisOrigem = $this->pontuacao = $this->vitorias = $this->derrotas = $this->allJogadores = '';
         $this->editado = false;
+    }
+
+    public function mount()
+    {
+        $this->jogadores = Jogador::all();
     }
     
     public function render()

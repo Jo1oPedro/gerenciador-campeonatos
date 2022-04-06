@@ -1,57 +1,63 @@
-<div class="container" style="margin-top: 25px">
-    @include('livewire.times.times-create')
-    @include('livewire.times.times-update')
-    @include('livewire.times.times-info')
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    @if(session()->has('message'))
-                        <div class="alert alert-success">{{session('message')}}</div>
-                    @elseif(session()->has('error'))
-                        <div class="alert alert-danger">{{session('error')}}</div>
-                    @endif
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                Times
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTimeModal" wire:click.prevent="resetInput()">
-                                    Adicionar novo Time
-                                </button>
-                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar pelo nome" wire:model="searchTerm" />
-                            </h3>
-                        </div>
-                        <div class="card-body table-responsive" style="padding:25px">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="padding-left:135px;">Nome</th>
-                                        <th>Pais de Origem</th>
-                                        <th>Pontuação</th>
-                                        <th>Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($times as $time)
-                                        <tr>
-                                            <td style="padding-left:135px;">{{$time->nome}}</td>
-                                            <td>{{$time->pais_origem}}</td>
-                                            <td>{{$time->pontuacao}}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#infoTimeModal" wire:click.prevent="edit({{ $time->id }})">Visualizar</button>
-                                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#updateTimeModal" wire:click.prevent="edit({{ $time->id }})">Editar</button>
-                                                <button type="button" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($time->nome) }}?') || event.stopImmediatePropagation()" wire:click.prevent="delete({{ $time->id }})">Excluir</button>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+
+
+<div x-data="{create: false}" >
+    <div x-data="{info:false}" >
+        <div x-data="{edit:false}">
+            <!--@include('livewire.times.times-create')-->
+            <div class="p-5 h-screen bg-gray-100">
+                <span class="text-xl mb-2 display:inline-block">Jogadores</span>
+                <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelectJogador">
+                    Adicionar novo Time 
+                </button>
+                <div>
+                    <input type="text" class="mb-4 hover:bg-gray-400 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
                 </div>
+                @if(session()->has('message'))
+                    <div class="">{{session('message')}}</div>
+                @elseif(session()->has('error'))
+                    <div class="">{{session('error')}}</div>
+                @endif
+                <div class="overflow-auto rounded-lg shadow">
+                    <table class="w-full cursor-pointer">
+                        <thead class="bg-gray-50 border-b-2 border-gray-200">
+                            <tr>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-20">ID</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left">Nome</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-35">Pais de origem</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Pontuação</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-25">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @foreach($times as $key => $time)
+                                <tr class="bg-white border-b transition durante-300 ease-in-out hover:bg-gray-100 ">
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $key+1 }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->nome }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->pais_origem }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->pontuacao }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                                        <div class="inline-flex">
+                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="read({{ $time->id }})" @click="info = true">
+                                                Visualizar 
+                                            </button>
+                                            <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" wire:click.prevent="edit({{ $time->id }})" @click="edit = true">
+                                                Editar                                        
+                                            </button>
+                                            <button class="ml-2 bg-red-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($time->nome) }}?') || event.stopImmediatePropagation()" wire:click.prevent="delete({{ $time->id }})">
+                                                Excluir                                       
+                                            </button>
+                                        </div>    
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div> 
+                {{ $times->links() }}
             </div>
-            {{ $times->links() }}
         </div>
-    </section>
-</div>
+    </div>
+</div>  
+
+

@@ -11,9 +11,7 @@ class Times extends Component
 {
 
     use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $searchTerm;
-
+    
     public $time_id;
     public $nome;
     public $pais_origem;
@@ -21,6 +19,7 @@ class Times extends Component
     public $vitorias;
     public $derrotas;
     public $allJogadores = [];
+    public $searchTerm;
 
     public function getJogadores(Time $time) 
     {

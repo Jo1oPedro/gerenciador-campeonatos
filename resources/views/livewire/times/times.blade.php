@@ -3,6 +3,7 @@
         <div x-data="{edit:false}">
             @include('livewire.times.times-create')
             @include('livewire.times.times-info')
+            @include('livewire.times.times-update')
             <div class="p-5 h-screen bg-gray-100">
                 <span class="text-xl mb-2 display:inline-block">Jogadores</span>
                 <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelect">
@@ -36,7 +37,7 @@
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->pontuacao }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                                         <div class="inline-flex">
-                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="edit({{ $time->id }})" @click="info = true">
+                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="read({{ $time->id }})" @click="info = true">
                                                 Visualizar 
                                             </button>
                                             <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" wire:click.prevent="edit({{ $time->id }})" @click="edit = true">

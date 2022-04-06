@@ -1,7 +1,3 @@
-
-
-
-
 <div 
     x-show.transition.duration.500ms="edit"
     class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0"

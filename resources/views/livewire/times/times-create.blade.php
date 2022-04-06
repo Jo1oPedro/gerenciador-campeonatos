@@ -73,6 +73,25 @@
                         </select>
                     </div>
                 </div>
+                <div class="mt-4" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="select-role"
+                        >Selecione os campeonatos do time</label
+                    >
+                    <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                        <select
+                        id="select-campeonato"
+                        multiple
+                        placeholder="Selecionar campeonatos..."
+                        autocomplete="off"
+                        class="block w-full rounded-sm cursor-pointer focus:outline-none"
+                        wire:model.defer="campeonatosDoTime"
+                        >
+                        @foreach ($campeonatos as $key => $campeonato)
+                            <option value="{{ $campeonato->id }}">{{ $key+1 }}: {{ $campeonato->nome }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->
                     <div class="">

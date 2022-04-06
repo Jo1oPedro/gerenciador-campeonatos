@@ -51,7 +51,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-pontuacao" type="text" wire:model="pontuacao" readonly>
+                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-pontuacao" type="number" wire:model="pontuacao" readonly>
                     </div>
                 </div>
 				<div class="md:flex md:items-center mb-6">
@@ -61,7 +61,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-vitorias" type="text" wire:model="vitorias" readonly>
+                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-vitorias" type="number" wire:model="vitorias" readonly>
                     </div>
                 </div>
 				<div class="md:flex md:items-center mb-6">
@@ -71,7 +71,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-derrotas" type="text" wire:model="derrotas" readonly>
+                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-derrotas" type="number" wire:model="derrotas" readonly>
                     </div>
                 </div>
                 <div class="inline-block relative w-full">

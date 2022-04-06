@@ -84,8 +84,8 @@
                 </div>
                 <div class="mt-4">
                     <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-role"
-                        >Selecione os times do campeonato</label
-                    >
+                        >Selecione os times do campeonato
+                    </label>
                     <div class="relative flex w-full"> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
                         <select
                         id="edit-role"

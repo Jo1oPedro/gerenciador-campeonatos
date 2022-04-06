@@ -65,8 +65,27 @@
         //preload: true,
       });
 
+      const tomSelectMultipleCampeonato = new TomSelect('#select-campeonato', {
+        plugins: {
+            'clear_button':{
+              'title':'Remover todas as opções selecionadas',
+                
+            },
+            'remove_button':{
+			        'title':'Remover esse time',
+		        }
+        },
+        onDelete: function(values) {
+		    return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+	      },
+        persist: false,
+        create: true,
+        //preload: true,
+      });
+
       document.getElementById('resetSelect').onclick = function() {
         tomSelectMultiple.clear();
+        tomSelectMultipleCampeonato.clear
       };
 
     </script> <!-- responsavel por manter um numero max de options sendo selecionadas caso necessario // também cria o botão de delete para remover todos os selects-->

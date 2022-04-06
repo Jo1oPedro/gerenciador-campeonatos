@@ -59,7 +59,7 @@ class Jogadores extends Component
         $this->resetValidation();
     }
 
-    public function resetInput() {
+    public function resetInputs() {
         $this->nome = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = $this->timeSelected = '';
         $this->resetErrors();
     }
@@ -76,7 +76,7 @@ class Jogadores extends Component
         ]);
 
         session()->flash('message', "Jogador $this->nome criado com sucesso");
-        $this->resetInput(); // reseta os campos
+        $this->resetInputs(); // reseta os campos
         $this->emit('closeModal', '#addJogadorModal');
         //$this->emit('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
         //$this->dispatchBrowserEvent('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
@@ -114,7 +114,7 @@ class Jogadores extends Component
             ]);
         }
         session()->flash('message', "Jogador $this->nome atualizado com sucesso");
-        $this->resetInput();
+        $this->resetInputs();
         $this->emit('closeModal', '#updateJogadorModal');
         //$this->emit('jogadorUpdated');
     }
@@ -140,17 +140,21 @@ class Jogadores extends Component
         $searchTerm = '%'.$this->searchTerm.'%';
         $paginate = 15;
         $jogadores = Jogador::where('nome', 'like', $searchTerm)->paginate($paginate);
+        $timesName = [];
         foreach($jogadores as $key => $jogador) {
-            //$times[] = Time::where('id', $jogador->id)->first()->nome;
-            $times[] = $jogador->Time()->get();
-            $timeName[$key] = $times[$key][0]->nome;
+            if($jogador->time == NULL) {
+                $timesName[$key] = "";
+            }
+            else {
+                $timesName[$key] = $jogador->time->nome;
+            }
         }
         //$jogadores = Jogador::orderBy('id', 'DESC')->paginate($paginate);
         //$pagination = ceil(Jogador::count()/$paginate) não tava usando esse;
 
         return view('livewire.jogador.jogadores', [
             'jogadores' => $jogadores,
-            'times' => $timeName,
+            'times' => $timesName,
             //'pagination' => Jogador::paginate($paginate),
         ]);
     }

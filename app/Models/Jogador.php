@@ -18,7 +18,7 @@ class Jogador extends Model
         //'time',
     ];
 
-    public function Time()
+    public function time()
     {
         return $this->belongsTo(Time::class);
     }

@@ -19,7 +19,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addJogadorModal" wire:click.prevent="resetInput()">
                                     Adicionar novo jogador
                                 </button>
-                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar pelo nome" wire:model="searchTerm" />
+                                <input type="text" style="margin-top:20px" class="form-control" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
                             </h3>
                         </div>
                         <div class="card-body table-responsive" style="padding:25px">

@@ -12,8 +12,6 @@ class Campeonatos extends Component
 {
 
     use WithPagination;
-    //$this->reset() limpa todos os campos
-    //$this->reset($nome) limpa só o campo nome
     public $nome;
     public $jogo;
     public $dataInicio;
@@ -24,7 +22,6 @@ class Campeonatos extends Component
     public $times;
     public $campeonato;
     public $searchTerm = '';
-    protected $paginationTheme = 'bootstrap';
 
     protected $rules =  [
         'nome' => 'required|min:5|string',
@@ -64,32 +61,41 @@ class Campeonatos extends Component
     public function create() 
     {
         $this->validate();
-        $campeonato = Campeonato::create([
-            'nome' => $this->nome,
-            'jogo' => $this->jogo,
-            'inicio' => $this->dataInicio,
-            'encerramento' => $this->dataFim,
-        ]);
-
-        foreach($this->timesNoCampeonato as $idTime)
+        $campeonato = Campeonato::where([
+            ['nome', $this->nome],
+            ['jogo', $this->jogo]
+        ])->get();
+        if(count($campeonato) == 0)
         {
-            Times_campeonato::create([
-                'time_id' => $idTime,
-                'campeonato_id' => $campeonato->id,
+            $campeonato = Campeonato::create([
+                'nome' => $this->nome,
+                'jogo' => $this->jogo,
+                'inicio' => $this->dataInicio,
+                'encerramento' => $this->dataFim,
             ]);
+    
+            foreach($this->timesNoCampeonato as $idTime)
+            {
+                Times_campeonato::create([
+                    'time_id' => $idTime,
+                    'campeonato_id' => $campeonato->id,
+                ]);
+            }
+            session()->flash('message', "Campeonato $campeonato->nome criado com sucesso");
+            $this->render();
         }
-        //$this->emit('resetSelect');
+        session()->flash('error', "Campeonato $this->nome já existe");
     }
 
     public function edit(Campeonato $campeonato) 
     {   
+        $this->resetInputs();
         $this->campeonato = $campeonato;
         $this->nome = $campeonato->nome;
         $this->jogo = $campeonato->jogo;
         $this->dataInicio = $campeonato->inicio;
         $this->dataFim = $campeonato->encerramento;
         $this->timesNoCampeonato = $campeonato->times->where('campeonato_id', $this->campeonato->id); // não está sendo devidamente utilizada pois não está sendo possivel colocar o attributo de selected para as options no edit
-        //dd($this->timesNoCampeonato);
         if(count($this->timesNoCampeonato) > 0)
         {
             foreach($this->timesNoCampeonato as $key => $time)
@@ -102,7 +108,7 @@ class Campeonatos extends Component
             }
             if(count($this->timesNoCampeonato) > 0) 
             {
-                $this->timesForaDoCampeonato = Time::whereIn('id', array_diff($idTimes,$this->idTimesNoCampeonato))->get(); // times que não foram selecionados
+                $this->timesForaDoCampeonato = Time::whereIn('id', array_diff($idTimes,$this->idTimesNoCampeonato))->get();
             }
             $this->timesNoCampeonato = Time::whereIn('id', $this->idTimesNoCampeonato)->get();
         } else {
@@ -115,6 +121,18 @@ class Campeonatos extends Component
     public function update()
     {
         $this->validate();
+        if( ($this->nome != $this->campeonato->nome) || ($this->jogo != $this->campeonato->jogo) )
+        {
+            $campeonato = Campeonato::where([
+                ['nome' => $this->nome],
+                ['jogo' => $this->jogo],
+            ])->get();
+            if(count($campeonato) > 0)
+            {
+                session()->flash('error', "Campeonato $this->nome já existe");
+                $this->render();
+            }
+        }
         $this->campeonato->update([
             'nome' => $this->nome,
             'jogo' => $this->jogo,
@@ -151,11 +169,14 @@ class Campeonatos extends Component
             } 
         }
         $this->campeonato->save();
+        session()->flash('message', "Campeonato {$this->campeonato->nome} atualizado com sucesso");
     }
 
     public function delete(Campeonato $campeonato)
     {
+        $campeonatoNome = $campeonato->nome;
         $campeonato->delete();
+        session()->flash('message', "Campeonato $campeonatoNome excluido com sucesso");
     }
 
     public function mount() 
@@ -165,8 +186,11 @@ class Campeonatos extends Component
 
     public function render()
     {
+        $searchTerm = '%' . $this->searchTerm . '%';
+        $paginate = 15;
+        $campeonatos = Campeonato::where('nome', 'like', $searchTerm)->paginate($paginate);
         return view('livewire.campeonatos.campeonatos', [
-            'campeonatos' => Campeonato::all(),
+            'campeonatos' => $campeonatos,
         ]);
     }
 }

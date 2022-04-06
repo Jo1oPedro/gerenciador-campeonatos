@@ -20,7 +20,7 @@ class Time extends Model
         'campeonato_id',
     ];
 
-    public function Jogadores()
+    public function jogadores()
     {
         return $this->hasMany(Jogador::class);
     }

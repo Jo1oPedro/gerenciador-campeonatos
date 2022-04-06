@@ -23,7 +23,7 @@ class Times extends Component
 
     public function getJogadores(Time $time) 
     {
-        (count($this->allJogadores) == 0) ? $this->allJogadores = $time->Jogadores()->get() : $this->allJogadores = [];
+        (count($this->allJogadores) == 0) ? $this->allJogadores = $time->jogadores()->get() : $this->allJogadores = [];
         /*if($this->allJogadores = '') 
         {
             $this->allJogadores = $time->Jogadores()->get();
@@ -64,15 +64,15 @@ class Times extends Component
 
     public function edit(Time $time) 
     {
-        $this->resetErrors();
+        $this->resetInputs();
         $this->time_id = $time->id;
         $this->nome = $time->nome;
-        $this->paisOrigem = $time->paisOrigem;
+        $this->paisOrigem = $time->pais_origem;
         $this->pontuacao = $time->pontuacao;
         $this->vitorias = $time->vitorias;
         $this->derrotas = $time->derrotas;
-        //$this->allJogadores = $time->Jogadores()->get();
-        $this->editado = true;
+        $this->jogadoresNoTime = $time->jogadores;
+        //$this->editado = true;
     }
 
     public function update()
@@ -126,6 +126,7 @@ class Times extends Component
     public function resetInputs() {
         $this->time_id = $this->nome = $this->paisOrigem = $this->pontuacao = $this->vitorias = $this->derrotas = $this->allJogadores = '';
         $this->editado = false;
+        $this->resetValidation();
     }
 
     public function mount()

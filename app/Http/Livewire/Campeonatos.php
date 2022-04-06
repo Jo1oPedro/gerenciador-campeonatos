@@ -22,7 +22,7 @@ class Campeonatos extends Component
     public $idTimesNoCampeonato;
     public $times;
     public $campeonato;
-    public $searchTerm = '';
+    public $searchTerm;
 
     protected $rules =  [
         'nome' => 'required|min:5|string',

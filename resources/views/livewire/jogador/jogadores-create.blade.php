@@ -1,5 +1,3 @@
-
-
 <div 
     x-show.transition.duration.500ms="create"
     class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0"
@@ -79,10 +77,16 @@
                         class="form-control @error('timeSelected') is-invalid @enderror block w-full rounded-sm cursor-pointer focus:outline-none"
                         wire:model="timeSelected"
                         >
+                        <option>Selecione um time:</option>
                         @foreach ($AllTimes as $key => $time)
                             <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
                         @endforeach
                         </select>
+                    </div>
+                    <div class="invalid-feedback">
+                        @error('timeSelected')
+                            {{$message}}
+                        @enderror
                     </div>
                 </div>
                 

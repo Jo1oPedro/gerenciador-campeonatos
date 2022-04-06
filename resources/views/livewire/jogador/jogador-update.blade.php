@@ -1,78 +1,132 @@
-<!-- Modal -->
-<div wire:ignore.self class="modal fade" id="updateJogadorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar jogador</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-            <input type="hidden" name="id" wire:model="jogadorId">
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" wire:model="nome" class="form-control @error('nome') is-invalid @enderror">
-                @error('nome')
-                    {{$message}}
-                @enderror
-            </div>
-            <div>
-                <label for="idade">Idade</label>
-                <input type="number" name="idade" wire:model="idade" class="form-control @error('idade') is-invalid @enderror">
-                @error('idade')
-                    {{$message}}
-                @enderror
-            </div>
-            <div>
-                <label for="nacionalidade">Nacionalidade</label>
-                <input type="text" name="nacionalidade" wire:model="nacionalidade" class="form-control @error('nacionalidade') is-invalid @enderror">
-                @error('nacionalidade')
-                    {{$message}}
-                @enderror
-            </div>
-            <div>
-                <label for="vitorias">Vitorias</label>
-                <input type="number" name="vitorias" wire:model="vitorias" class="form-control @error('vitorias') is-invalid @enderror">
-                @error('vitorias')
-                    {{$message}}
-                @enderror
-            </div>
-            <div>
-                <label for="derrotas">Derrotas</label>
-                <input type="number" name="derrotas" wire:model="derrotas" class="form-control @error('derrotas') is-invalid @enderror">
-                @error('derrotas')
-                    {{$message}}
-                @enderror
-            </div>
-            <div class="form-group">
-              <label for="sel1">Times:</label>
-              <select class="form-control" id="sel1" name="timeSelected" class="form-control @error('timeSelected') is-invalid @enderror" wire:model="timeSelected">
-                <option>Escolha um time: </option>
-                @foreach($AllTimes as $time)
-                  <option value="{{ $time->id }}">{{ $time->nome }}</option>
-                @endforeach
-              </select>
-              <div class="invalid-feedback">
-                  @error('timeSelected')
-                      {{$message}}
-                  @enderror
-              </div>
-            </div>
-            <!--<div>
-                <label for="time">Time</label>
-                <input type="text" name="time" wire:model="time" class="form-control @error('time') is-invalid @enderror">
-                @error('time')
-                    {{$message}}
-                @enderror
-            </div>-->   
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click.prevent="resetInput()">Fechar</button>
-        <button type="button" class="btn btn-primary" wire:click.prevent="update()">Editar jogador</button>
-      </div>
+
+
+
+
+<div 
+    x-show.transition.duration.500ms="edit"
+    class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center px-4 md:px-0"
+    >
+    <div class="flex flex-col max-w-lg bg-white shadow-2xl rounded-lg border-2 border-gray-400 p-6" @click.away="edit = false">
+        <div class="flex justify-between mb-4">
+            <h3 class="font-bold text-2xl">Inserir novo jogador</h3>
+            <button @click="edit = false">
+                <svg version="1.1" id="Capa_1" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                L284.286,256.002z"/>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div class="">
+            <form class="w-full max-w-sm">
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/3">
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-nome">
+                        Nome
+                    </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="form-control @error('nome') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" class="form-control @error('nome') is-invalid @enderror" id="edit-nome" type="text" wire:model="nome">
+                        <div class="invalid-feedback">
+                            @error('nome')
+                                {{$message}}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/3">
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-idade">
+                            Idade
+                        </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="form-control @error('idade') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-idade" type="number" wire:model="idade">
+                        <div class="invalid-feedback">
+                            @error('idade')
+                                {{$message}}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/3">
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-nacionalidade">
+                          Nacionalidade
+                        </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="form-control @error('nacionalidade') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-nacionalidade" type="text" wire:model="nacionalidade">
+                        <div class="invalid-feedback">
+                            @error('nacionalidade')
+                                {{$message}}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/3">
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-vitorias">
+                            Vitorias
+                        </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="form-control @error('vitorias') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-vitorias" type="number" wire:model="vitorias">
+                        <div class="invalid-feedback">
+                            @error('vitorias')
+                                {{$message}}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/3">
+                        <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="edit-derrotas">
+                          Derrotas
+                        </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="form-control @error('derrotas') is-invalid @enderror appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="edit-derrotas" type="number" wire:model="derrotas">
+                        <div class="invalid-feedback">
+                            @error('derrotas')
+                                {{$message}}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4" wire:ignore> <!--wire:ignore permite com que seja possivel manter os valores do select(options) sendo exibidos ao mesmo tempo que eles são atualizados dentro do component-->
+                    <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" for="select-jogador"
+                        >Selecione um time:</label
+                    >
+                    <div class="relative flex w-full"> 
+                        <select
+                        placeholder="Selecionar times..."
+                        class="form-control @error('timeSelected') is-invalid @enderror block w-full rounded-sm cursor-pointer focus:outline-none"
+                        wire:model="timeSelected"
+                        >
+                        @foreach ($AllTimes as $key => $time)
+                            <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="md:flex md:items-center mt-4">
+                    <!--<div class="md:w-1/3"></div>-->
+                    <div class="">
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="store()" @click="create = false">
+                        Criar
+                    </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>

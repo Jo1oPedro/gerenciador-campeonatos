@@ -31,6 +31,8 @@ class Jogadores extends Component
         'idade' => 'required|integer|min:14|max:70',
         'nacionalidade' => 'required|string|min:2',
         'timeSelected' => 'required',
+        'vitorias' => 'sometimes|integer|min:0',
+        'derrotas' => 'sometimes|integer|min:0',
         //'time' => 'required|string|min:2',
     ];
 
@@ -47,6 +49,8 @@ class Jogadores extends Component
             'nacionalidade.min' => 'O campo de :attribute precisa ter pelo menos :min caracteres',
             'nacionalidade.string' => 'O campo de :attribute precisa ser uma string',
             'timeSelected.required' => 'O campo de times é obrigatorio',
+            'vitorias.min' => 'O campo de :attribute não pode ser negativo',
+            'vitorias.min' => 'O campo de :attribute não pode ser negativo',
         ];
     }
 
@@ -65,8 +69,9 @@ class Jogadores extends Component
     }
     
     public function store() {
+        $this->vitorias = 1;
+        $this->derrotas = 1;
         $this->validate();
-
         Jogador::create([
             'nome' => $this->nome,
             'idade' => $this->idade,
@@ -74,7 +79,6 @@ class Jogadores extends Component
             'time_id' => $this->timeSelected,
             //'time' => $this->time,
         ]);
-
         session()->flash('message', "Jogador $this->nome criado com sucesso");
         $this->resetInputs(); // reseta os campos
         $this->emit('closeModal', '#addJogadorModal');
@@ -92,7 +96,11 @@ class Jogadores extends Component
         $this->nome = $jogador->nome;
         $this->idade = $jogador->idade;
         $this->nacionalidade = $jogador->nacionalidade;
-        $this->time = Time::where('id', $jogador->time_id)->first()->nome;
+        $this->time = Time::where('id', $jogador->time_id)->first();
+        if($this->time != NULL)
+        {
+            $this->time = $this->time->nome;
+        }
         $this->vitorias = $jogador->vitorias;
         $this->derrotas = $jogador->derrotas;
         //$this->time = $jogador->time;

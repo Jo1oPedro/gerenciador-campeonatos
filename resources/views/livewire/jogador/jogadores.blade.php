@@ -5,7 +5,7 @@
     <div x-data="{info:false}" >
         <div x-data="{edit:false}">
             @include('livewire.jogador.jogadores-create')
-
+            @include('livewire.jogador.jogador-update')
             <div class="p-5 h-screen bg-gray-100">
                 <span class="text-xl mb-2 display:inline-block">Jogadores</span>
                 <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelectJogador">
@@ -44,7 +44,7 @@
                                             <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="edit({{ $jogador->id }})" @click="info = true">
                                                 Visualizar 
                                             </button>
-                                            <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" id="createEditSelect" wire:click.prevent="edit({{ $jogador->id }})" @click="edit = true">
+                                            <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" wire:click.prevent="edit({{ $jogador->id }})" @click="edit = true">
                                                 Editar                                        
                                             </button>
                                             <button class="ml-2 bg-red-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" onclick="return confirm('Tem certeza que deseja remover {{ addslashes($jogador->nome) }}?') || event.stopImmediatePropagation()" wire:click.prevent="delete({{ $jogador->id }})">

@@ -6,6 +6,7 @@
         <div x-data="{edit:false}">
             @include('livewire.jogador.jogadores-create')
             @include('livewire.jogador.jogador-update')
+            @include('livewire.jogador.jogador-info')
             <div class="p-5 h-screen bg-gray-100">
                 <span class="text-xl mb-2 display:inline-block">Jogadores</span>
                 <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelectJogador">
@@ -25,7 +26,7 @@
                             <tr>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-20">ID</th>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left">Nome</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Idade</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-35">Idade</th>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Nacionalidade</th>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Time</th>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Ações</th>
@@ -41,7 +42,7 @@
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $times[$key] }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
                                         <div class="inline-flex">
-                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="edit({{ $jogador->id }})" @click="info = true">
+                                            <button class="bg-emerald-400 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" wire:click.prevent="read({{ $jogador->id }})" @click="info = true">
                                                 Visualizar 
                                             </button>
                                             <button class="ml-2 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-r" wire:click.prevent="edit({{ $jogador->id }})" @click="edit = true">

@@ -8,7 +8,7 @@
     >
     <div class="flex flex-col max-w-lg bg-white shadow-2xl rounded-lg border-2 border-gray-400 p-6" @click.away="edit = false">
         <div class="flex justify-between mb-4">
-            <h3 class="font-bold text-2xl">Inserir novo jogador</h3>
+            <h3 class="font-bold text-2xl">Editar jogador</h3>
             <button @click="edit = false">
                 <svg version="1.1" id="Capa_1" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
@@ -107,13 +107,15 @@
                     >
                     <div class="relative flex w-full"> 
                         <select
-                        placeholder="Selecionar times..."
-                        class="form-control @error('timeSelected') is-invalid @enderror block w-full rounded-sm cursor-pointer focus:outline-none"
-                        wire:model="timeSelected"
+                            placeholder="Selecionar times..."
+                            class="form-control @error('timeSelected') is-invalid @enderror block w-full rounded-sm cursor-pointer focus:outline-none"
+                            wire:model="timeSelected"
                         >
-                        @foreach ($AllTimes as $key => $time)
-                            <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
-                        @endforeach
+                            <option>Selecione um time:</option>
+                            @foreach ($allTimes as $key => $time)
+                                <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
+                            @endforeach
+                            <option value="-1">{{ count($allTimes)+1 }}: Retirar time</option>
                         </select>
                     </div>
                 </div>
@@ -121,8 +123,8 @@
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->
                     <div class="">
-                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="store()" @click="create = false">
-                        Criar
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="update()" @click="edit = false">
+                        Editar
                     </button>
                     </div>
                 </div>

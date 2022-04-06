@@ -12,6 +12,7 @@ class Campeonatos extends Component
 {
 
     use WithPagination;
+    
     public $nome;
     public $jogo;
     public $dataInicio;
@@ -49,7 +50,7 @@ class Campeonatos extends Component
 
     public function resetInputs()
     {
-        $this->nome = $this->jogo = $this->dataInicio = $this->dataFim = '';
+        $this->nome = $this->jogo = $this->dataInicio = $this->dataFim = $this->campeonato = '';
         $this->timesNoCampeonato = $this->timesForaDoCampeonato = $this->idTimesNoCampeonato = [];
         $this->resetValidation();
     }
@@ -177,6 +178,7 @@ class Campeonatos extends Component
         $campeonatoNome = $campeonato->nome;
         $campeonato->delete();
         session()->flash('message', "Campeonato $campeonatoNome excluido com sucesso");
+        $this->resetInputs();
     }
 
     public function mount() 

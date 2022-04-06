@@ -19,21 +19,18 @@ class Jogadores extends Component
     public $time;
     public $vitorias;
     public $derrotas;
-    public $AllTimes;
-    public $timeSelected;
-    //public $time;
-
+    public $allTimes;
+    public $timeSelected = NULL;
+    public $jogador;
     public $searchTerm = '';
-    protected $paginationTheme = 'bootstrap';
 
     protected $rules =  [
         'nome' => 'required|min:5|string',
         'idade' => 'required|integer|min:14|max:70',
         'nacionalidade' => 'required|string|min:2',
-        'timeSelected' => 'required',
+        'timeSelected' => 'sometimes',
         'vitorias' => 'sometimes|integer|min:0',
         'derrotas' => 'sometimes|integer|min:0',
-        //'time' => 'required|string|min:2',
     ];
 
     public function messages()
@@ -50,7 +47,7 @@ class Jogadores extends Component
             'nacionalidade.string' => 'O campo de :attribute precisa ser uma string',
             'timeSelected.required' => 'O campo de times é obrigatorio',
             'vitorias.min' => 'O campo de :attribute não pode ser negativo',
-            'vitorias.min' => 'O campo de :attribute não pode ser negativo',
+            'derrotas.min' => 'O campo de :attribute não pode ser negativo',
         ];
     }
 
@@ -64,34 +61,27 @@ class Jogadores extends Component
     }
 
     public function resetInputs() {
-        $this->nome = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = $this->timeSelected = '';
-        $this->resetErrors();
+        $this->nome = $this->idade = $this->nacionalidade = $this->time = $this->jogadorId = $this->vitorias = $this->derrotas = $this->jogador = '';
+        $this->timeSelected = NULL;
+        $this->resetValidation();
     }
     
-    public function store() {
-        $this->vitorias = 1;
-        $this->derrotas = 1;
+    public function create() {
         $this->validate();
         Jogador::create([
             'nome' => $this->nome,
             'idade' => $this->idade,
             'nacionalidade' => $this->nacionalidade,
             'time_id' => $this->timeSelected,
-            //'time' => $this->time,
         ]);
         session()->flash('message', "Jogador $this->nome criado com sucesso");
-        $this->resetInputs(); // reseta os campos
+        $this->resetInputs();
         $this->emit('closeModal', '#addJogadorModal');
-        //$this->emit('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
-        //$this->dispatchBrowserEvent('jogadorAdded'); // emite a ação para esconder o model de criação de jogador
     }
 
-    public function edit(Jogador $jogador)
+    public function read(Jogador $jogador)
     {
-        //$this->emit('jogadorInfo');
-        //dd('morreu');
-
-        $this->resetValidation();
+        $this->resetInputs();
         $this->jogadorId = $jogador->id;
         $this->nome = $jogador->nome;
         $this->idade = $jogador->idade;
@@ -103,12 +93,31 @@ class Jogadores extends Component
         }
         $this->vitorias = $jogador->vitorias;
         $this->derrotas = $jogador->derrotas;
-        //$this->time = $jogador->time;
+    }
+
+    public function edit(Jogador $jogador)
+    {
+        $this->resetInputs();
+        $this->jogadorId = $jogador->id;
+        $this->nome = $jogador->nome;
+        $this->idade = $jogador->idade;
+        $this->nacionalidade = $jogador->nacionalidade;
+        $this->time = Time::where('id', $jogador->time_id)->first();
+        $this->vitorias = $jogador->vitorias;
+        $this->derrotas = $jogador->derrotas;
+        $this->jogador = $jogador;
     }
     
     public function update()
     {
         $this->validate();
+        if($this->timeSelected == "")
+        {
+            $this->timeSelected = $this->jogador->time_id;
+        } else if($this->timeSelected == -1)
+        {
+            $this->timeSelected = NULL;
+        }
         if($this->jogadorId) 
         {
             Jogador::where('id', $this->jogadorId)->update([
@@ -118,13 +127,9 @@ class Jogadores extends Component
                 'vitorias' => $this->vitorias,
                 'derrotas' => $this->derrotas,
                 'time_id' => $this->timeSelected,
-                //'time' => $this->time,
             ]);
         }
         session()->flash('message', "Jogador $this->nome atualizado com sucesso");
-        $this->resetInputs();
-        $this->emit('closeModal', '#updateJogadorModal');
-        //$this->emit('jogadorUpdated');
     }
 
     public function delete($jogador) 
@@ -136,11 +141,12 @@ class Jogadores extends Component
             session()->flash('message', "Jogador $name deletado com sucesso");
         }
         session()->flash('error', "Ocorreu um erro ao excluir o jogador");
+        $this->resetInputs();
     }
 
     public function mount() 
     {
-        $this->AllTimes = Time::all();
+        $this->allTimes = Time::all();
     }
 
     public function render()
@@ -157,13 +163,9 @@ class Jogadores extends Component
                 $timesName[$key] = $jogador->time->nome;
             }
         }
-        //$jogadores = Jogador::orderBy('id', 'DESC')->paginate($paginate);
-        //$pagination = ceil(Jogador::count()/$paginate) não tava usando esse;
-
         return view('livewire.jogador.jogadores', [
             'jogadores' => $jogadores,
             'times' => $timesName,
-            //'pagination' => Jogador::paginate($paginate),
         ]);
     }
 }

@@ -78,7 +78,7 @@
                         wire:model="timeSelected"
                         >
                         <option>Selecione um time:</option>
-                        @foreach ($AllTimes as $key => $time)
+                        @foreach ($allTimes as $key => $time)
                             <option value="{{ $time->id }}">{{ $key+1 }}: {{ $time->nome }}</option>
                         @endforeach
                         </select>
@@ -93,7 +93,7 @@
                 <div class="md:flex md:items-center mt-4">
                     <!--<div class="md:w-1/3"></div>-->
                     <div class="">
-                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="store()" @click="create = false">
+                    <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button" wire:click.prevent="create()" @click="create = false"> 
                         Criar
                     </button>
                     </div>

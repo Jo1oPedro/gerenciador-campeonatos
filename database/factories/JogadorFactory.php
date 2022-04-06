@@ -16,7 +16,7 @@ class JogadorFactory extends Factory
     {
         return [
             'nome' => $this->faker->firstName(),
-            'idade' => $this->faker->numberBetween($min = 1,$max = 115),
+            'idade' => $this->faker->numberBetween($min = 14,$max = 70),
             //'time' => $this->faker->firstName(),
             'nacionalidade' => $this->faker->city(),
             //'time_id' => Time::all()->random()->id,

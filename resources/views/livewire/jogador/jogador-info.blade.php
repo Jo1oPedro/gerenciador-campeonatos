@@ -29,7 +29,7 @@
                     </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-nome" type="text" wire:model="nome" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-nome" type="text" wire:model="nome" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -39,7 +39,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-idade" type="number" wire:model="idade" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-idade" type="number" wire:model="idade" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -49,7 +49,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-nacionalidade" type="text" wire:model="nacionalidade" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-nacionalidade" type="text" wire:model="nacionalidade" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -59,7 +59,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-vitorias" type="number" wire:model="vitorias" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-vitorias" type="number" wire:model="vitorias" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -69,7 +69,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-derrotas" type="number" wire:model="derrotas" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-derrotas" type="number" wire:model="derrotas" readonly>
                     </div>
                 </div>
                 <div class="md:flex md:items-center mb-6">
@@ -79,7 +79,7 @@
                         </label>
                     </div>
                     <div class="md:w-2/3">
-                        <input class="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-time" type="text" wire:model="time" readonly>
+                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="view-time" type="text" wire:model="time" readonly>
                     </div>
                 </div>
             </form>

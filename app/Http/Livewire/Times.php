@@ -21,7 +21,7 @@ class Times extends Component
     public $vitorias;
     public $derrotas;
     public $jogadoresNoTime = [];
-    public $jogadoresSemTime;
+    public $jogadoresSemTime = [];
     public $campeonatos;
     public $campeonatosDoTime = [];
     public $campeonatosSemEsseTime = [];

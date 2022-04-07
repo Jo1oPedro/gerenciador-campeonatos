@@ -10,7 +10,7 @@
                     Adicionar novo campeonato 
                 </button>
                 <div>
-                    <input type="text" class="mb-4 hover:bg-gray-400 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
+                    <input type="text" class="mb-4 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
                 </div>
                 @if(session()->has('message'))
                     <div class="">{{session('message')}}</div>
@@ -22,17 +22,17 @@
                         <thead class="bg-gray-50 border-b-2 border-gray-200">
                             <tr>
                                 <th class="p-3 text-sm font-semibold tracking-wide text-left w-20">ID</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left">Nome</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Jogo</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Inicio</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Encerramento</th>
-                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Ações</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Nome</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Jogo</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Inicio</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Encerramento</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Ações</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
                             @foreach($campeonatos as $key => $campeonato)
-                                <tr class="bg-white border-b transition durante-300 ease-in-out hover:bg-gray-100 ">
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $key+1 }} </td>
+                                <tr class="bg-white border-b transition durante-300 ease-in-out hover:bg-gray-100">
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap font-bold">{{ $key+1 }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->nome }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->jogo }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $campeonato->inicio }} </td>

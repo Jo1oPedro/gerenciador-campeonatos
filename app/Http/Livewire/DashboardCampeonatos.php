@@ -26,7 +26,6 @@ class DashboardCampeonatos extends Component
 
     public function getJogadores(Time $time)
     {
-        $this->resetInputs();
         $this->time = $time;
     }
 
@@ -63,12 +62,12 @@ class DashboardCampeonatos extends Component
             $timesIds = Times_campeonato::select('time_id')->where('campeonato_id', $this->campeonatoId)->get()->toArray();
             $times = Time::whereIn('id', $timesIds)
                             ->where('nome', 'like', $searchTermTime)
+                            ->orderBy('pontuacao', 'desc')
                             ->paginate($paginateTime, ['*'], "timePaginate{$this->campeonatoId}");
         }
         if(isset($this->time))
         {
             $jogadores = $this->time->jogadores()->where('nome', 'like', $searchTermJogador)->paginate($paginateJogador, ['*'], "jogadorPaginate{$this->time->id}");
-            //dd($jogadores);
         }
         $campeonatos = Campeonato::where('nome', 'like', $searchTermCampeonato)->paginate($paginateCampeonato, ['*'], 'campeonatosPaginate');
         return view('livewire.dashBoards.campeonatos.dashboard-campeonatos', [

@@ -1,5 +1,4 @@
-<div x-data="{times: false}" >
-@include('livewire.dashBoards.campeonatos.dashboard-info-times')
+<div>
     <div class="p-5 h-screen bg-gray-100" >
         <span class="text-xl mb-2 display:inline-block">Campeonatos</span>
         <div>

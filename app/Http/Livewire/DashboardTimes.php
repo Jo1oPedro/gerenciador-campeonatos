@@ -34,9 +34,9 @@ class DashboardTimes extends Component
         {
             $times = Time::where('pais_origem', 'like', $searchTermTime)
                         ->orderBy($this->ordernar, 'desc')
-                        ->paginate(9 , ['*'], 'campeonatosPaginate'); 
+                        ->paginate(6 , ['*'], 'campeonatosPaginate'); 
         } else {
-            $times = Time::where('pais_origem', 'like', $searchTermTime)->paginate(9 , ['*'], 'campeonatosPaginate');   
+            $times = Time::where('pais_origem', 'like', $searchTermTime)->paginate(6 , ['*'], 'campeonatosPaginate');   
         }
         $this->ordernar = NULL;
         return view('livewire.dashboards.times.dashboard-times',[

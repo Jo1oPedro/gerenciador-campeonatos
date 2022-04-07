@@ -6,7 +6,7 @@
         @include('livewire.dashBoards.campeonatos.dashboard-info-jogadores')
         <div class="bg-white shadow-2xl rounded-lg border-2 border-gray-400 p-6">
             <div class="flex justify-between mb-4">
-                <h3 class="font-bold text-2xl">Informações dos times</h3>
+                <h3 class="font-bold text-2xl font-bold">Informações dos times</h3>
                 <button @click="times = false">
                     <svg version="1.1" id="Capa_1" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
@@ -43,7 +43,7 @@
                         <tbody class="divide-y divide-gray-100">
                             @foreach($times as $key => $time)
                                 <tr class="bg-white border-b transition durante-300 ease-in-out hover:bg-gray-100 ">
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $key+1 }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap font-bold">{{ $key+1 }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->nome }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->pais_origem }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $time->pontuacao }} </td>

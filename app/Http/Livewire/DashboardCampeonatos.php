@@ -70,7 +70,7 @@ class DashboardCampeonatos extends Component
             $jogadores = $this->time->jogadores()->where('nome', 'like', $searchTermJogador)->paginate($paginateJogador, ['*'], "jogadorPaginate{$this->time->id}");
         }
         $campeonatos = Campeonato::where('nome', 'like', $searchTermCampeonato)->paginate($paginateCampeonato, ['*'], 'campeonatosPaginate');
-        return view('livewire.dashBoards.campeonatos.dashboard-campeonatos', [
+        return view('livewire.dashboards.campeonatos.dashboard-campeonatos', [
             'campeonatos' => $campeonatos,
             'times' => $times,
             'jogadores' => $jogadores,

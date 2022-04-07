@@ -5,6 +5,7 @@ use App\Http\Livewire\Jogadores;
 use App\Http\Livewire\Times;
 use App\Http\Livewire\Campeonatos;
 use App\Http\Livewire\DashboardCampeonatos;
+use App\Http\Livewire\DashboardTimes;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/times', Times::class);
 Route::get('/campeonatos', Campeonatos::class);
 
 Route::get('/dashboardCampeonatos', DashboardCampeonatos::class);
+
+Route::get('/dashboardTimes', DashboardTimes::class);

@@ -21,9 +21,9 @@
             </button>
         </div>
         <div class="p-5 h-screen bg-gray-100">
-            <span class="text-xl mb-2 display:inline-block">Jogadores do time</span>
+            <span class="text-xl display:inline-block">Jogadores do time</span>
             <div>
-                <input type="text" class="mb-4 hover:bg-gray-400 w-full font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTermJogador" />
+                <input type="text" class="mb-4 mt-2 w-full font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTermJogador" />
             </div>
             <div class="overflow-auto rounded-lg shadow">
                 <table class="w-full cursor-pointer">

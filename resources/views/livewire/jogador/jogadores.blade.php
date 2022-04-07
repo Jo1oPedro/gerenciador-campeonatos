@@ -8,7 +8,7 @@
             @include('livewire.jogador.jogador-update')
             @include('livewire.jogador.jogador-info')
             <div class="p-5 h-screen bg-gray-100">
-                <span class="text-xl mb-2 display:inline-block">Jogadores</span>
+                <span class="text-xl mb-2 display:inline-block font-bold">Jogadores</span>
                 <button class="mb-4 bg-blue-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-l" @click="create = true" wire:click="resetInputs()" id="resetSelectJogador">
                     Adicionar novo jogador 
                 </button>
@@ -35,7 +35,7 @@
                         <tbody class="divide-y divide-gray-100">
                             @foreach($jogadores as $key => $jogador)
                                 <tr class="bg-white border-b transition durante-300 ease-in-out hover:bg-gray-100 ">
-                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $key+1 }} </td>
+                                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap font-bold">{{ $key+1 }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $jogador->nome }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $jogador->idade }} </td>
                                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">{{ $jogador->nacionalidade }} </td>

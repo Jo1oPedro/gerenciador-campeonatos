@@ -161,7 +161,7 @@ class Jogadores extends Component
         {
             $this->updatingSearchInput();
         }
-        $paginate = 15;
+        $paginate = 8;
         $jogadores = Jogador::where('nome', 'like', $searchTerm)->paginate($paginate);
         $timesName = [];
         foreach($jogadores as $key => $jogador) {

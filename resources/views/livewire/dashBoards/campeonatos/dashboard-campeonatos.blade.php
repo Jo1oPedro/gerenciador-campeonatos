@@ -38,7 +38,6 @@
                     </table>
                 </div> 
                 <div x-show="!times">
-                    <!--{{ $campeonatos->links() }}-->
                     {{ $campeonatos->onEachSide(1)->links() }}
                 </div>
             </div>

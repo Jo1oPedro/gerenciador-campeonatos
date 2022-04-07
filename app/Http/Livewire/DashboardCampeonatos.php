@@ -37,7 +37,7 @@ class DashboardCampeonatos extends Component
         $searchTermTime = '%' . $this->searchTermTime . '%';
         $paginateTime = 7;
         $paginateCampeonato = 9;
-        $times = [];
+        $times = Time::where('id', -1)->paginate($paginateTime);
         if($searchTermTime != '%%' || $searchTermCampeonato != '%%')
         {
             $this->updatingSearchInput();
@@ -45,11 +45,11 @@ class DashboardCampeonatos extends Component
         if(isset($this->campeonatoId))
         {
             $timesIds = Times_campeonato::select('time_id')->where('campeonato_id', $this->campeonatoId)->get()->toArray();
-            $times = Time::where('nome', 'like', $searchTermTime)
-                            ->whereIn('id', $timesIds)
-                            ->paginate($paginateTime);
+            $times = Time::whereIn('id', $timesIds)
+                            ->where('nome', 'like', $searchTermTime)
+                            ->paginate($paginateTime, ['*'], "timePaginate{$this->campeonatoId}");
         }
-        $campeonatos = Campeonato::where('nome', 'like', $searchTermCampeonato)->paginate($paginateCampeonato);
+        $campeonatos = Campeonato::where('nome', 'like', $searchTermCampeonato)->paginate($paginateCampeonato, ['*'], 'campeonatosPaginate');
         return view('livewire.dashBoards.campeonatos.dashboard-campeonatos', [
             'campeonatos' => $campeonatos,
             'times' => $times,

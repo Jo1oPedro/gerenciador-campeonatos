@@ -24,11 +24,11 @@
                 <thead class="bg-gray-50 border-b-2 border-gray-200">
                     <tr>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left w-20">ID</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Nome</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">País de origem</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Pontuação</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Vitorias em campeonatos</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-15">Derrotas em campeonatos</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-20">Nome</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">País de origem</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Pontuação</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Vitorias em campeonatos</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left w-16">Derrotas em campeonatos</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">

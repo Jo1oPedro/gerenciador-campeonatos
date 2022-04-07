@@ -206,7 +206,7 @@ class Times extends Component
         {
             $this->updatingSearchInput();
         }
-        $paginate = 15;
+        $paginate = 8;
         $times = Time::where('nome', 'like', $searchTerm)->paginate($paginate);
         return view('livewire.times.times', [ 
             'times' => $times,

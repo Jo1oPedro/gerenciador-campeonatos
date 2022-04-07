@@ -13,7 +13,7 @@
                     Adicionar novo jogador 
                 </button>
                 <div>
-                    <input type="text" class="mb-4 hover:bg-gray-400 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
+                    <input type="text" class="mb-4 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTerm" />
                 </div>
                 @if(session()->has('message'))
                     <div class="">{{session('message')}}</div>

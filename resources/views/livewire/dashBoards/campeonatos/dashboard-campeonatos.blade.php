@@ -3,7 +3,7 @@
     <div class="p-5 h-screen bg-gray-100" >
         <span class="text-xl display:inline-block font-bold">Campeonatos</span>
         <div>
-            <input type="text" class="mb-4 mt-2 hover:bg-gray-400 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTermCampeonato" />
+            <input type="text" class="mb-4 mt-2 font-bold py-2 px-4 rounded-l" placeholder="Procurar pelo nome:" wire:model="searchTermCampeonato" />
         </div>
         <div class="overflow-auto rounded-lg shadow">
             <table class="w-full cursor-pointer">

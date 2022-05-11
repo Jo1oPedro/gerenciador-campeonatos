@@ -52,8 +52,14 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div> 
-                {{ $times->links() }}
+                </div>
+                <div x-show="!create">
+                    <div x-show="!info">
+                        <div x-show="!edit">
+                            {{ $times->links() }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

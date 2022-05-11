@@ -122,8 +122,8 @@ class Campeonatos extends Component
         if( ($this->nome != $this->campeonato->nome) || ($this->jogo != $this->campeonato->jogo) )
         {
             $campeonato = Campeonato::where([
-                ['nome' => $this->nome],
-                ['jogo' => $this->jogo],
+                'nome' => $this->nome,
+                'jogo' => $this->jogo,
             ])->get();
             if(count($campeonato) > 0)
             {

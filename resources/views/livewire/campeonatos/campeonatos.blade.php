@@ -54,8 +54,14 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div> 
-                {{ $campeonatos->links() }}
+                </div>
+                <div x-show="!create">
+                    <div x-show="!info">
+                        <div x-show="!edit">
+                            {{ $campeonatos->links() }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

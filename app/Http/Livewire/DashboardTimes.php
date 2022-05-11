@@ -38,7 +38,7 @@ class DashboardTimes extends Component
         } else {
             $times = Time::where('pais_origem', 'like', $searchTermTime)->paginate(6 , ['*'], 'campeonatosPaginate');   
         }
-        $this->ordernar = NULL;
+        //$this->ordernar = NULL;
         return view('livewire.dashboards.times.dashboard-times',[
             'times' => $times,
         ]);

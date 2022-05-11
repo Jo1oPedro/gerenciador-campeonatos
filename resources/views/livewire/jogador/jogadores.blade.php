@@ -17,6 +17,15 @@
                 @elseif(session()->has('error'))
                     <div class="">{{session('error')}}</div>
                 @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="overflow-auto rounded-lg shadow">
                     <table class="w-full cursor-pointer">
                         <thead class="bg-gray-50 border-b-2 border-gray-200">

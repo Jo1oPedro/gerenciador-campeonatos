@@ -52,6 +52,7 @@ class Campeonatos extends Component
     {
         $this->nome = $this->jogo = $this->dataInicio = $this->dataFim = $this->campeonato = '';
         $this->timesNoCampeonato = $this->timesForaDoCampeonato = $this->idTimesNoCampeonato = [];
+        $this->resetValidation();
     }
 
     public function updated($propertyName) {

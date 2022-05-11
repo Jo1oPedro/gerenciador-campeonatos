@@ -1,6 +1,3 @@
-
-
-
 <div x-data="{create: false}" >
     <div x-data="{info:false}" >
         <div x-data="{edit:false}">
@@ -57,8 +54,14 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div> 
-                {{ $jogadores->links() }}
+                </div>
+                <div x-show="!create">
+                    <div x-show="!edit">
+                        <div x-show="!info">
+                            {{ $jogadores->links() }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
